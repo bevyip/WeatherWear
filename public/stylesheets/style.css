@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+main {
+  padding: 1em 2em;
+}
+
+form {
+  max-width: 20em;
+}
