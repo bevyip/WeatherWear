@@ -3,7 +3,7 @@ var router = express.Router();
 
 // set layout variables
 router.use(function(req, res, next) {
-  res.locals.title = "MakeReddit";
+  res.locals.title = "WeatherWear";
   res.locals.currentUserId = req.session.userId;
 
   next();
@@ -13,7 +13,7 @@ router.use(function(req, res, next) {
 router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  res.render('index', { title: 'weatherWear', currentUserId: currentUserId });
+  res.render('index', { title: 'WeatherWear', currentUserId: currentUserId });
 });
 
 // login
