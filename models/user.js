@@ -20,7 +20,7 @@ UserSchema.pre('save', function(next) {
   })
 });
 
-UserSchema.statics.authenticate = function(firstname, lastname, email, password, next) {
+UserSchema.statics.authenticate = function(email, password, next) {
   User.findOne({ email: email })
     .exec(function (err, user) {
       if (err) {

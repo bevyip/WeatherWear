@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 
 // set layout variables
 router.use(function(req, res, next) {
@@ -11,6 +12,7 @@ router.use(function(req, res, next) {
 
 // home page
 router.get('/', (req, res, next) => {
+  console.log(req.session.userId);
   const currentUserId = req.session.userId;
 
   res.render('index', { title: 'WeatherWear', currentUserId: currentUserId });
@@ -19,13 +21,6 @@ router.get('/', (req, res, next) => {
 // login
 router.get('/login', (req, res, next) => {
   res.render('login');
-});
-
-router.post('/login', (req, res, next) => {
-  console.log('logging in!');
-  console.log(req.body);
-
-  res.redirect('/');
 });
 
 // POST login
