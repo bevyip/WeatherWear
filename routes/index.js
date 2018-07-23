@@ -1,14 +1,31 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Hello, world' });
+// set layout variables
+router.use(function(req, res, next) {
+  res.locals.title = "MakeReddit";
+  res.locals.currentUserId = req.session.userId;
+
+  next();
+});
+
+// home page
+router.get('/', (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  res.render('index', { title: 'weatherWear', currentUserId: currentUserId });
 });
 
 // login
 router.get('/login', (req, res, next) => {
   res.render('login');
+});
+
+router.post('/login', (req, res, next) => {
+  console.log('logging in!');
+  console.log(req.body);
+
+  res.redirect('/');
 });
 
 // POST login
@@ -25,6 +42,17 @@ router.post('/login', (req, res, next) => {
       return res.redirect('/') ;
     }
   });
+});
+
+// logout
+router.get('/logout', (req, res, next) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) return next(err);
+    });
+  }
+
+  return res.redirect('/login');
 });
 
 module.exports = router;
