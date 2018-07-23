@@ -5,7 +5,7 @@ const auth = require('./helpers/auth')
 
 //Users index
 router.get('/', auth.requireLogin, (req, res, next) => {
-  User.find({}, 'username', function(err, users) {
+  User.find({}, 'email', function(err, users) {
     if(err) {
       console.error(err);
     } else {

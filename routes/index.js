@@ -30,9 +30,9 @@ router.post('/login', (req, res, next) => {
 
 // POST login
 router.post('/login', (req, res, next) => {
-  User.authenticate(req.body.username, req.body.password, (err, user) => {
+  User.authenticate(req.body.email, req.body.password, (err, user) => {
     if (err || !user) {
-      const next_error = new Error("Username or password incorrect");
+      const next_error = new Error("Email or Password incorrect");
       next_error.status = 401;
 
       return next(next_error);

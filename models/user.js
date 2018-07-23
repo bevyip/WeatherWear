@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new Schema({
-  username: { type: String, required: true, unique: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
@@ -18,8 +20,8 @@ UserSchema.pre('save', function(next) {
   })
 });
 
-UserSchema.statics.authenticate = function(username, password, next) {
-  User.findOne({ username: username })
+UserSchema.statics.authenticate = function(firstname, lastname, email, password, next) {
+  User.findOne({ email: email })
     .exec(function (err, user) {
       if (err) {
         return next(err)
