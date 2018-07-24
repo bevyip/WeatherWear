@@ -5,21 +5,24 @@
 
     <div class="new-input-stuff">
       <ol>
+        <h3>Date today:</h3>
+        <input type="date" name="date" class="form-control" max="4444-12-31" id="input-date" >
+
         <h3><li>What did I wear today?</li></h3>
         <label for="input-top-title">Top:</label>
-        <input type="text" name="name" class="form-control input-top" placeholder="e.g: Off-shoulder top" required minlength="1" maxlength="44" autocomplete="off">
+        <input type="text" name="top" class="form-control input-top" placeholder="e.g: Off-shoulder top" required minlength="1" maxlength="44" autocomplete="off">
 
         <label for="input-bottom-title">Bottom:</label>
-        <input type="text" name="name" class="form-control input-bottom" placeholder="e.g: Ripped denim jeans" required minlength="1" maxlength="44" autocomplete="off">
+        <input type="text" name="bottom" class="form-control input-bottom" placeholder="e.g: Ripped denim jeans" required minlength="1" maxlength="44" autocomplete="off">
 
         <label for="input-outerwear-title">Outerwear:</label>
-        <input type="text" name="name" class="form-control input-outerwear" placeholder="e.g: Leather jacket" required minlength="1" maxlength="44" autocomplete="off">
+        <input type="text" name="outerwear" class="form-control input-outerwear" placeholder="e.g: Leather jacket" required minlength="1" maxlength="44" autocomplete="off">
 
         <label for="input-others-title">Others:</label>
-        <input type="text" name="name" class="form-control input-others" placeholder="e.g: Red beanie and blue scarf" required minlength="1" maxlength="44" autocomplete="off">
+        <input type="text" name="others" class="form-control input-others" placeholder="e.g: Red beanie and blue scarf" minlength="1" maxlength="44" autocomplete="off">
 
         <h3><li>How did I feel today?</li></h3>
-        <select id="userFeels" name="input-userFeels">
+        <select id="userFeels" name="userFeels">
           <option value="cold">Cold</option>
           <option value="ok-cold">Moderately Cold</option>
           <option value="ok">Perfect</option>

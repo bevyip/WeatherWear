@@ -1,1 +1,16 @@
 <h1>All user Inputs are here displayed as a list</h1>
+
+<div class="inputs-body">
+    {{#each userInput as |input|}}
+    <div class="content inputs summary">
+      <!-- <h3 class="input-name">{{input.date}}</h3> -->
+      <div class="input-stuff">
+        <p class="inputstuff input-date">Date: {{input.date}}</p>
+      </div>
+      <!-- <form class="form" method="POST" action="/inputs?_method=DELETE">
+        <input style="visibility: hidden; margin:-90px;" name="delete_id" value="{{this._id}}" >
+        <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
+      </form> -->
+    </div>
+    {{/each}}
+  </div>
