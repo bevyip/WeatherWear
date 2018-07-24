@@ -1,10 +1,5 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
 }
 
 main {
@@ -13,4 +8,28 @@ main {
 
 form {
   max-width: 20em;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.section.landing-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 10px;
+}
+
+.section.landing-compare, .section.landing-create {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 25px;
 }

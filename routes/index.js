@@ -12,7 +12,6 @@ router.use(function(req, res, next) {
 
 // home page
 router.get('/', (req, res, next) => {
-  console.log(req.session.userId);
   const currentUserId = req.session.userId;
 
   res.render('index', { title: 'WeatherWear', currentUserId: currentUserId });
