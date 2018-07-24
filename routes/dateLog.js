@@ -14,7 +14,13 @@ router.get('/compare', auth.requireLogin, (req, res, next) => {
 router.get('/new', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  res.render('dateLog/new', { currentUserId: currentUserId });  
-})
+  res.render('dateLog/new', { currentUserId: currentUserId });
+});
+
+router.get('/show', auth.requireLogin, (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  res.render('dateLog/show', { currentUserId: currentUserId });
+});
 
 module.exports = router;
