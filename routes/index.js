@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
+const auth = require('./helpers/auth');
+
 // set layout variables
 router.use(function(req, res, next) {
   res.locals.title = "WeatherWear";
@@ -10,11 +12,18 @@ router.use(function(req, res, next) {
   next();
 });
 
-// home page
+// where-are-you page
 router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  res.render('index', { title: 'WeatherWear', currentUserId: currentUserId });
+  res.render('index', { currentUserId: currentUserId });
+});
+
+// main landing page
+router.get('/main', auth.requireLogin, (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  res.render('main', { title: 'WeatherWear', currentUserId: currentUserId });
 });
 
 // login

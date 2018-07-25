@@ -1,20 +1,17 @@
-<header>
-    <h1>WeatherWear</h1>
-    {{# if currentUserId}}
-    <div class="section landing-content">
-      <a href="/dateLog/compare">
-        <div class="section landing-compare">
-          <h2>Compare</h2>
-          <p>Find days that have a similar temperature as today!</p>
-        </div>
-      </a>
+<form action="/index" method="post">
 
-      <a href="/dateLog/new">
-        <div class="section landing-create">
-          <h2>Create</h2>
-          <p>Haven't made a log for today? Create one now!</p>
+  <h1>WeatherWear</h1>
+
+    {{# if currentUserId}}
+    <div class="section where-are-you">
+      <h1>Hello?</h1>
+        <div class="section where-button">
+          <h2>Google Geolocation API here</h2>
+          <a href="/main">
+            <p>Submit Location</p>
         </div>
       </a>
     </div>
     {{/if}}
-</header>
+
+</form>
