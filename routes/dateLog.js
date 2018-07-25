@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const auth = require('./helpers/auth');
 const DateLog = require('../models/dateLog');
@@ -16,24 +17,28 @@ const User = require('../models/user');
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {
   let dateLog = new DateLog(req.body);
+  dateLog.user = req.session.userId;
 
   dateLog.save(function(err, dateLog) {
     if(err) { console.error(err) };
 
-    return res.redirect('/dateLog/show');
+    return res.redirect('/dateLog/all');
   });
 });
 
 // displays dateLog/ show.hbs - all dateLogs
-router.get('/show', auth.requireLogin, (req, res, next) => {
+router.get('/all', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
-  const dateId = req.session.dateId;
-
-  DateLog.find({users: res.locals.currentUserId, date: res.locals.dateId}, function(err, dateLog){
+  // filter!!!!
+  // const resultArr = dateLogArr.filter(dateLog =>  dateLog.date == "the date I need by ID")
+  // DateLog.find({users: res.locals.currentUserId, date: req.locals.dateLogId.date}, function(err, dateLog){
+  console.log(currentUserId);
+  DateLog.find({user: currentUserId}, function(err, dateLogs){
     if(err) {
       console.error(err);
     } else {
-      res.render('dateLog/show', { currentUserId: currentUserId, dateLog: dateLog });
+      console.log(dateLogs);
+      res.render('dateLog/all', { currentUserId: currentUserId, dateLogs: dateLogs });
     }
   });
 });

@@ -12,7 +12,7 @@ const dateLogSchema = new Schema ({
   outerwear: { type: String, required: true},
   others: { type: String},
   userFeels: { type: String, required: true},
-  users: { type: Schema.Types.ObjectId, ref: 'User' }
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('dateLog', dateLogSchema);
