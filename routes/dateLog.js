@@ -8,12 +8,14 @@ const DateLog = require('../models/dateLog');
 const date_log = require('./dateLog')
 const User = require('../models/user');
 const Location = require('../models/location');
-// const Weather = require('../models/weather');
+const Weather = require('../models/weather');
 
 // when a form is submitted, it saves the new input and redirects
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {
 
+  // parsing google maps api to get long/ lat
+  // parsing to input new weather object is nested inside
   request('https://maps.googleapis.com/maps/api/geocode/json?address=' + req.body.location + '&key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc', function (error, response, body){
     const json = JSON.parse(body);
 
@@ -31,15 +33,38 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 
     location.save(function(err, loc) {
       if(err) { console.error(err) };
-
     });
 
     dateLog.save(function(err, dateLog) {
       if(err) { console.error(err) };
+    });
 
-      return res.redirect('/');
+    let long_needed = JSON.stringify(json.results[0].geometry.location.lng);
+    let lat_needed = JSON.stringify(json.results[0].geometry.location.lat);
+
+    // using long/lat to get weather information from Dark Sky API
+    request('https://api.darksky.net/forecast/6f3be8512aa00bf20706bd64b3a6f127/' + lat_needed + ',' + long_needed, function (error, response, body){
+      const json_2 = JSON.parse(body);
+
+      let weather = new Weather({
+        highTemp: JSON.stringify(json_2.daily.data[0].temperatureMax) + "°F",
+        lowTemp: JSON.stringify(json_2.daily.data[0].temperatureMin) + "°F",
+        avgwindchill: JSON.stringify(json_2.daily.data[0].windSpeed) + "m/s",
+        highfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMax) + "°F",
+        lowfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMin) + "°F",
+        avetemp: JSON.stringify(json_2.currently.apparentTemperature) + "°F"
+      });
+
+      weather.user = req.session.userId;
+
+      weather.save(function(err, loc) {
+        if(err) { console.error(err) };
+
+        return res.redirect('/');
+      });
     });
   });
+
 });
 
 // displays dateLog/ show.hbs - all dateLogs

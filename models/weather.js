@@ -7,7 +7,8 @@ const weatherSchema = new Schema ({
   avgwindchill: { type: String, required: true},
   highfeels: { type: String, required: true},
   lowfeels: { type: String, required: true},
-  avetemp: { type: String, required: true}
+  avetemp: { type: String, required: true},
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('weather', weatherSchema);
