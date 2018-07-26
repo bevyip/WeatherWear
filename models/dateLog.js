@@ -8,6 +8,7 @@ const dateLogSchema = new Schema ({
   outerwear: { type: String, required: true},
   others: { type: String},
   userFeels: { type: String, required: true},
+  location: { type: String, required: true},
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 

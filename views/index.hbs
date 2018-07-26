@@ -1,4 +1,4 @@
-<form action="/index" method="post">
+<form action="/main" method="post">
 
   <h1>WeatherWear</h1>
 
@@ -6,7 +6,7 @@
     <div class="section geo-location input">
       <div class="form-group">
         <h3>Location</h3>
-        <input class="form-control" type="text" name="loc" id="autocomplete"/>
+        <input class="form-control" type="text" name="location" id="autocomplete"/>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc&libraries=places&language=en"></script>
 
@@ -19,9 +19,9 @@
         </script>
       </div>
 
-      <a href="/main" class="section where-button">
-        <p>Submit Location</p>
-    </a>
+      <div class="section where-button">
+        <button type="submit" class="btn btn-primary">Submit Location</button>
+    </div>
     </div>
   {{/if}}
 

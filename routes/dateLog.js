@@ -6,13 +6,21 @@ const auth = require('./helpers/auth');
 const DateLog = require('../models/dateLog');
 const date_log = require('./dateLog')
 const User = require('../models/user');
+const Location = require('../models/location');
 // const Weather = require('../models/weather');
 
 // when a form is submitted, it saves the new input and redirects
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {
   let dateLog = new DateLog(req.body);
+  let location = new Location({location: req.body.location});
+  location.user = req.session.userId;
   dateLog.user = req.session.userId;
+
+  location.save(function(err, loc) {
+    if(err) { console.error(err) };
+
+  });
 
   dateLog.save(function(err, dateLog) {
     if(err) { console.error(err) };

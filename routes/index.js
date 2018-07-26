@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var Loc = require('../models/location');
+// var Loc = require('../models/location');
 
 const auth = require('./helpers/auth');
 
@@ -17,23 +17,22 @@ router.use(function(req, res, next) {
 router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  res.render('index', { currentUserId: currentUserId });
+  res.render('main', { currentUserId: currentUserId });
 });
-
-// geolocation information submission
-router.post('/', auth.requireLogin, (req, res, next) => {
-  const currentUserId = req.session.userId;
-  let location = new Loc(req.body);
-  location.user = req.session.userId;
-
-  console.log("HELLO??????");
-
-  location.save(function(err, loc) {
-    if(err) { console.error(err) };
-
-    return res.redirect('main', { currentUserId: currentUserId, loc: loc });
-  });
-});
+//
+// // geolocation information submission
+// router.post('/main', auth.requireLogin, (req, res, next) => {
+//   const currentUserId = req.session.userId;
+//   let location = new Loc(req.body);
+//   location.user = req.session.userId;
+//
+//   location.save(function(err, loc) {
+//     if(err) { console.error(err) };
+//
+//     console.log("hello?????????????");
+//     return res.render('main', { currentUserId: currentUserId, loc: loc });
+//   });
+// });
 
 // main landing page
 router.get('/main', auth.requireLogin, (req, res, next) => {
