@@ -19,20 +19,6 @@ router.get('/', (req, res, next) => {
 
   res.render('main', { currentUserId: currentUserId });
 });
-//
-// // geolocation information submission
-// router.post('/main', auth.requireLogin, (req, res, next) => {
-//   const currentUserId = req.session.userId;
-//   let location = new Loc(req.body);
-//   location.user = req.session.userId;
-//
-//   location.save(function(err, loc) {
-//     if(err) { console.error(err) };
-//
-//     console.log("hello?????????????");
-//     return res.render('main', { currentUserId: currentUserId, loc: loc });
-//   });
-// });
 
 // main landing page
 router.get('/main', auth.requireLogin, (req, res, next) => {

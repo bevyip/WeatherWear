@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const request = require('request');
 
 const auth = require('./helpers/auth');
 const DateLog = require('../models/dateLog');
@@ -12,20 +13,32 @@ const Location = require('../models/location');
 // when a form is submitted, it saves the new input and redirects
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {
-  let dateLog = new DateLog(req.body);
-  let location = new Location({location: req.body.location});
-  location.user = req.session.userId;
-  dateLog.user = req.session.userId;
 
-  location.save(function(err, loc) {
-    if(err) { console.error(err) };
+  request('https://maps.googleapis.com/maps/api/geocode/json?address=' + req.body.location + '&key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc', function (error, response, body){
+    const json = JSON.parse(body);
 
-  });
+    let dateLog = new DateLog(req.body);
+    let location = new Location({
+      location: req.body.location,
+      long: JSON.stringify(json.results[0].geometry.location.lng),
+      lat: JSON.stringify(json.results[0].geometry.location.lat)
+    });
 
-  dateLog.save(function(err, dateLog) {
-    if(err) { console.error(err) };
+    location.user = req.session.userId;
+    dateLog.user = req.session.userId;
+    dateLog.long = JSON.stringify(json.results[0].geometry.location.lng);
+    dateLog.lat = JSON.stringify(json.results[0].geometry.location.lat);
 
-    return res.redirect('/dateLog/all');
+    location.save(function(err, loc) {
+      if(err) { console.error(err) };
+
+    });
+
+    dateLog.save(function(err, dateLog) {
+      if(err) { console.error(err) };
+
+      return res.redirect('/');
+    });
   });
 });
 

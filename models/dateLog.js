@@ -9,6 +9,8 @@ const dateLogSchema = new Schema ({
   others: { type: String},
   userFeels: { type: String, required: true},
   location: { type: String, required: true},
+  long: { type: String, required: true},
+  lat: { type: String, required: true},
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
