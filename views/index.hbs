@@ -3,13 +3,12 @@
   <h1>WeatherWear</h1>
 
   {{# if currentUserId}}
-  <div class="section where-are-you">
-    <h1>Hello?</h1>
     <div class="section geo-location input">
       <div class="form-group">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc&sensor=false&libraries=places&language=en"></script>
-        <label for="user-location" class="new-loc">Location</label>
+        <h3>Location</h3>
         <input class="form-control" type="text" name="loc" id="autocomplete"/>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc&libraries=places&language=en"></script>
 
         <script>
         var input = document.getElementById('autocomplete');
@@ -22,9 +21,8 @@
 
       <a href="/main" class="section where-button">
         <p>Submit Location</p>
-      </div>
     </a>
-  </div>
+    </div>
   {{/if}}
 
 </form>
