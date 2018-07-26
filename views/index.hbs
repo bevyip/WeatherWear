@@ -2,16 +2,29 @@
 
   <h1>WeatherWear</h1>
 
-    {{# if currentUserId}}
-    <div class="section where-are-you">
-      <h1>Hello?</h1>
-        <div class="section where-button">
-          <h2>Google Geolocation API here</h2>
-          <a href="/main">
-            <p>Submit Location</p>
-        </div>
-      </a>
-    </div>
-    {{/if}}
+  {{# if currentUserId}}
+  <div class="section where-are-you">
+    <h1>Hello?</h1>
+    <div class="section geo-location input">
+      <div class="form-group">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc&sensor=false&libraries=places&language=en"></script>
+        <label for="user-location" class="new-loc">Location</label>
+        <input class="form-control" type="text" name="loc" id="autocomplete"/>
+
+        <script>
+        var input = document.getElementById('autocomplete');
+        new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+          var place = autocomplete.getPlace();
+        })
+        </script>
+      </div>
+
+      <a href="/main" class="section where-button">
+        <p>Submit Location</p>
+      </div>
+    </a>
+  </div>
+  {{/if}}
 
 </form>
