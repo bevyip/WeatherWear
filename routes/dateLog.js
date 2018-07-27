@@ -49,6 +49,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
     dateLog.date = todayDate;
 
     let location = new Location({
+      date: todayDate,
       location: req.body.location,
       long: JSON.stringify(json.results[0].geometry.location.lng),
       lat: JSON.stringify(json.results[0].geometry.location.lat)
@@ -85,6 +86,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
       });
 
       weather.user = req.session.userId;
+      weather.location = req.body.location;
 
       weather.save(function(err, dateLog) {
         if(err) { console.error(err) };

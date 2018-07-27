@@ -6,6 +6,31 @@ var Weather = require('../models/weather');
 
 const auth = require('./helpers/auth');
 
+function setToday(){
+  let n = new Date();
+  let y = n.getFullYear();
+  let m = n.getMonth();
+  let d = n.getDate();
+
+  var month = new Array();
+  month[0] = "January";
+  month[1] = "February";
+  month[2] = "March";
+  month[3] = "April";
+  month[4] = "May";
+  month[5] = "June";
+  month[6] = "July";
+  month[7] = "August";
+  month[8] = "September";
+  month[9] = "October";
+  month[10] = "November";
+  month[11] = "December";
+
+  var newMonth = month[m];
+  let ans = newMonth + " " + d + " " + y;
+  return ans;
+}
+
 // set layout variables
 router.use(function(req, res, next) {
   res.locals.title = "WeatherWear";
@@ -17,17 +42,18 @@ router.use(function(req, res, next) {
 // main landing page
 router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
-  const currentDate = new Date();
+  const currentDate = setToday();
 
+  // Weather.find({user: currentUserId, date: currentDate}, function(err, weather, location){
   Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
     if(err) {
-      console.error(err);
+      // User's Input cannot be found
+      // Front-end show no weather for today
+      res.render('main', { currentUserId: currentUserId });
     } else {
-      res.render('/', { currentUserId: currentUserId, weather: weather });
+      res.render('main', { currentUserId: currentUserId, weather: weather });
     }
   });
-
-  res.render('main', { currentUserId: currentUserId });
 });
 
 // login

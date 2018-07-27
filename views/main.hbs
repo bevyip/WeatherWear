@@ -1,14 +1,9 @@
 <header>
     <h1>WeatherWear</h1>
-<!--
-    {{# if weather}}
-    <h2>OMG THERE'S A WEATHER</h2>
-    {{/if}} -->
-
-    <p><button onclick="geoFindMe()">Show my location</button></p>
-    <div id="out"></div>
 
     {{# if currentUserId}}
+    <p class="text-center"><button onclick="geoFindMe()">Show my location</button></p>
+    <div class="text-center" id="out"></div>
     <div class="section landing-content">
       <a href="/dateLog/compare">
         <div class="section landing-compare">
@@ -24,6 +19,20 @@
         </div>
       </a>
     </div>
+    {{/if}}
+
+    {{# if weather}}
+      {{#each weather as |w|}}
+        <div class="today-weather">
+          <h2>{{w.location}}</h2>
+          <h2>{{w.date}}</h2>
+          <h2>{{w.highTemp}}</h2>
+          <h2>{{w.lowTemp}}</h2>
+          <h2>{{w.avgwindchill}}</h2>
+          <h2>{{w.highfeels}}</h2>
+          <h2>{{w.lowfeels}}</h2>
+        </div>
+      {{/each}}
     {{/if}}
 </header>
 

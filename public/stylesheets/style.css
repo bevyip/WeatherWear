@@ -63,3 +63,9 @@ select {
   border-radius: 4px;
   background-color: #f1f1f1;
 }
+
+.today-weather {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -9,6 +9,7 @@ const weatherSchema = new Schema ({
   highfeels: { type: String, required: true},
   lowfeels: { type: String, required: true},
   avetemp: { type: String, required: true},
+  location: { type: String, required: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
