@@ -5,8 +5,8 @@
     <div class="new-input-stuff">
       <ol>
         <h3>Date today:</h3>
-        <input type="date" name="date" class="form-control" max="4444-12-31" id="input-date" >
-
+        <p id="date"></p>
+        
         <div class="location-input">
           <h3>Location: </h3>
           <input class="form-control" type="text" name="location" id="autocomplete"/>
@@ -52,4 +52,31 @@ new google.maps.places.Autocomplete(input);
 google.maps.event.addListener(autocomplete, 'place_changed', function(){
   var place = autocomplete.getPlace();
 })
+
+function setToday(){
+  let n =  new Date();
+  let y = n.getFullYear();
+  let m = n.getMonth();
+  let d = n.getDate();
+
+  var month = new Array();
+  month[0] = "January";
+  month[1] = "February";
+  month[2] = "March";
+  month[3] = "April";
+  month[4] = "May";
+  month[5] = "June";
+  month[6] = "July";
+  month[7] = "August";
+  month[8] = "September";
+  month[9] = "October";
+  month[10] = "November";
+  month[11] = "December";
+
+  var newMonth = month[m];
+
+  document.getElementById("date").innerHTML = newMonth + " " + d + " " + y;
+}
+
+setToday();
 </script>

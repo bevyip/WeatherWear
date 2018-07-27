@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-// var Loc = require('../models/location');
+var Loc = require('../models/location');
+var Weather = require('../models/weather');
 
 const auth = require('./helpers/auth');
 
@@ -13,16 +14,18 @@ router.use(function(req, res, next) {
   next();
 });
 
-// where-are-you page
+// main landing page
 router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
+  const currentDate = new Date();
 
-  res.render('main', { currentUserId: currentUserId });
-});
-
-// main landing page
-router.get('/main', auth.requireLogin, (req, res, next) => {
-  const currentUserId = req.session.userId;
+  Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
+    if(err) {
+      console.error(err);
+    } else {
+      res.render('/', { currentUserId: currentUserId, weather: weather });
+    }
+  });
 
   res.render('main', { currentUserId: currentUserId });
 });

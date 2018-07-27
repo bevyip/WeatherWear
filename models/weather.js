@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const weatherSchema = new Schema ({
+  date: { type: String, required: true },
   highTemp: { type: String, required: true},
   lowTemp: { type: String, required: true},
   avgwindchill: { type: String, required: true},

@@ -10,6 +10,31 @@ const User = require('../models/user');
 const Location = require('../models/location');
 const Weather = require('../models/weather');
 
+function setToday(){
+  let n = new Date();
+  let y = n.getFullYear();
+  let m = n.getMonth();
+  let d = n.getDate();
+
+  var month = new Array();
+  month[0] = "January";
+  month[1] = "February";
+  month[2] = "March";
+  month[3] = "April";
+  month[4] = "May";
+  month[5] = "June";
+  month[6] = "July";
+  month[7] = "August";
+  month[8] = "September";
+  month[9] = "October";
+  month[10] = "November";
+  month[11] = "December";
+
+  var newMonth = month[m];
+  let ans = newMonth + " " + d + " " + y;
+  return ans;
+}
+
 // when a form is submitted, it saves the new input and redirects
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {
@@ -20,6 +45,9 @@ router.post('/', auth.requireLogin, (req, res, next) => {
     const json = JSON.parse(body);
 
     let dateLog = new DateLog(req.body);
+    todayDate = setToday();
+    dateLog.date = todayDate;
+
     let location = new Location({
       location: req.body.location,
       long: JSON.stringify(json.results[0].geometry.location.lng),
@@ -47,6 +75,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
       const json_2 = JSON.parse(body);
 
       let weather = new Weather({
+        date: todayDate,
         highTemp: JSON.stringify(json_2.daily.data[0].temperatureMax) + "°F",
         lowTemp: JSON.stringify(json_2.daily.data[0].temperatureMin) + "°F",
         avgwindchill: JSON.stringify(json_2.daily.data[0].windSpeed) + "m/s",
@@ -57,7 +86,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 
       weather.user = req.session.userId;
 
-      weather.save(function(err, loc) {
+      weather.save(function(err, dateLog) {
         if(err) { console.error(err) };
 
         return res.redirect('/');
