@@ -2,13 +2,9 @@
   <h1>WeatherWear</h1>
 
   {{# if currentUserId}}
-  <body onload="geoFindMe()">
-  <div class="text-center" id="current-temp"></div>
-  <div class="text-center" id="location"></div>
-
-
   <div class="section landing-content">
     <div class="section landing-today-weather">
+      <!-- show only user input IF THERE IS A USER INPUT -->
       {{# if weather}}
         {{#each weather as |w|}}
         <div class="today-weather">
@@ -36,6 +32,14 @@
           </div>
         </div>
         {{/each}}
+
+        <!-- show current location details at the start & if there is no user input -->
+        {{else}}
+        <body onload="geoFindMe()">
+        <div class="text-center" id="current-temp"></div>
+        <div class="text-center" id="location"></div>
+        <div class="text-center" id="feels-like"></div>
+        <div class="text-center" id="wind-speed"></div>
       {{/if}}
     </div>
 
@@ -61,6 +65,7 @@
 </header>
 
 <script>
+// frontend call to get current location
 function geoFindMe() {
   let output = document.getElementById("location");
 
@@ -84,7 +89,7 @@ function geoFindMe() {
         console.log("There's something wrong with your Geolocation API");
       }
       else{
-        output.innerHTML = '<p>You\'re currently at ' + data.results[0].formatted_address + '</p>';
+        output.innerHTML = 'You\'re currently at ' + data.results[0].formatted_address;
 
         weatherNow(lat, long);
       }
@@ -98,33 +103,17 @@ function geoFindMe() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
+//frontend call to get current location's weather deets
 function weatherNow(latitude, longitude){
-  // http://localhost:3000/api/:lon/:lat
   fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
-    console.log("in weatherNow");
     return res.json();
   }).then( (data) => {
-    console.log(data);
+    document.getElementById("current-temp").innerHTML = data.currentTemp;
+    document.getElementById("feels-like").innerHTML = data.currentFeels;
+    document.getElementById("wind-speed").innerHTML = data.windSpeed;
+
   }).catch( (err) => {
     console.log(err.message);
   });
-
-
-  // let aveTemp = document.getElementById("current-temp");
-  //
-  // const api = `https://api.darksky.net/forecast/6f3be8512aa00bf20706bd64b3a6f127/${latitude},${longitude}`
-  // const options = { method: 'GET' };
-  //
-  // return fetch(api, options).then((res) => {
-  //   return res.json()
-  // }).then((data) => {
-  //   if(data.error){
-  //     console.log("There's something wrong with your DarkSky API");
-  //   }
-  //   else{
-  //     console.log(data);
-  //     // output.innerHTML = '<p>Current Location is ' + data.results[0].formatted_address + '</p>';
-  //   }
-  // });
 }
 </script>

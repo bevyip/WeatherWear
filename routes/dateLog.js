@@ -36,8 +36,8 @@ function setToday(){
 }
 
 
-// when a form is submitted, it saves the new input and redirects
-// to dateLog/ show.hbs - all dateLogs
+// Main page which shows current location details at the start,
+// After submitting input, shows new location details at main page.
 router.post('/', auth.requireLogin, (req, res, next) => {
 
   // parsing google maps api to get long/ lat

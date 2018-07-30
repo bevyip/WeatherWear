@@ -56,17 +56,20 @@ router.get('/', (req, res, next) => {
   });
 });
 
-
+//backend function for current location weather deets
 router.get('/api/:lon/:lat', (req, res) => {
   const { lat, lon } = req.params;
   // request weather data with lat and lon...
   const api = `https://api.darksky.net/forecast/6f3be8512aa00bf20706bd64b3a6f127/${lat},${lon}`;
 
   request(api, function (error, response, body){
-    const json_2 = JSON.parse(body);
-    console.log(json_2.currently.temperature);
+    const json = JSON.parse(body);
+    const currentTemp = JSON.stringify(json.currently.temperature) + "°F";
+    const currentFeels = JSON.stringify(json.currently.apparentTemperature) + "°F";
+    const windSpeed = JSON.stringify(json.currently.windSpeed) + "°F";
+
+    return res.json({ currentTemp: currentTemp, currentFeels: currentFeels, windSpeed });
   });
-  // return res.json({ weather: 'rain' });
 })
 
 // login
