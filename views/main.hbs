@@ -47,12 +47,12 @@
 
     <div class="section landing-buttons">
 
-      <a href="/dateLog/compare" onclick="geoFindMe_compare()">
+      <div onclick="geoFindMe_compare()">
         <div class="section landing-compare">
           <h2>Compare</h2>
           <p>Find days that have a similar temperature as today!</p>
         </div>
-      </a>
+      </div>
 
       <a href="/dateLog/new">
         <div class="section landing-create">
@@ -141,10 +141,7 @@ function geoFindMe_compare(){
         console.log("There's something wrong with your Geolocation API");
       }
       else{
-        console.log("i'm in 2nd geofindme");
-
-        // TODO: Fetch to pass long/lat to backend ONLY
-
+        window.location.href = `http://localhost:3000/dateLog/compare/${long}/${lat}`;
       }
     });
   }
