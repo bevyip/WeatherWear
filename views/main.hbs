@@ -2,9 +2,11 @@
   <h1>WeatherWear</h1>
 
   {{# if currentUserId}}
-  <p class="text-center"><button onclick="geoFindMe()">Show my location</button></p>
+  <body onload="geoFindMe()">
+  <div class="text-center" id="current-temp"></div>
+  <div class="text-center" id="location"></div>
 
-  <div class="text-center" id="out"></div>
+
   <div class="section landing-content">
     <div class="section landing-today-weather">
       {{# if weather}}
@@ -60,7 +62,7 @@
 
 <script>
 function geoFindMe() {
-  let output = document.getElementById("out");
+  let output = document.getElementById("location");
 
   if (!navigator.geolocation){
     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
@@ -79,20 +81,50 @@ function geoFindMe() {
       return res.json()
     }).then((data) => {
       if(data.error){
-        console.log("Woops")
+        console.log("There's something wrong with your Geolocation API");
       }
       else{
-        // console.log(data)
-        output.innerHTML = '<p>Latitude is ' + lat + '° <br>Longitude is ' + long + '°</p>';
-      }
-    })
-  }
+        output.innerHTML = '<p>You\'re currently at ' + data.results[0].formatted_address + '</p>';
 
+        weatherNow(lat, long);
+      }
+    });
+  }
 
   function error() {
     output.innerHTML = "Unable to retrieve your location";
   }
 
   navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function weatherNow(latitude, longitude){
+  // http://localhost:3000/api/:lon/:lat
+  fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
+    console.log("in weatherNow");
+    return res.json();
+  }).then( (data) => {
+    console.log(data);
+  }).catch( (err) => {
+    console.log(err.message);
+  });
+
+
+  // let aveTemp = document.getElementById("current-temp");
+  //
+  // const api = `https://api.darksky.net/forecast/6f3be8512aa00bf20706bd64b3a6f127/${latitude},${longitude}`
+  // const options = { method: 'GET' };
+  //
+  // return fetch(api, options).then((res) => {
+  //   return res.json()
+  // }).then((data) => {
+  //   if(data.error){
+  //     console.log("There's something wrong with your DarkSky API");
+  //   }
+  //   else{
+  //     console.log(data);
+  //     // output.innerHTML = '<p>Current Location is ' + data.results[0].formatted_address + '</p>';
+  //   }
+  // });
 }
 </script>

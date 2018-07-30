@@ -35,6 +35,7 @@ function setToday(){
   return ans;
 }
 
+
 // when a form is submitted, it saves the new input and redirects
 // to dateLog/ show.hbs - all dateLogs
 router.post('/', auth.requireLogin, (req, res, next) => {

@@ -45,17 +45,6 @@ router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
 
-  // function convertAdd(lat, long) {
-  //   console.log("lat: " + lat);
-  //   console.log("long: " + long);
-  //
-  //   request('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc', function (error, response, body){
-  //     console.log("body: " + body);
-  //     console.log("hello");
-  //   });
-  // }
-
-  // Weather.find({user: currentUserId, date: currentDate}, function(err, weather, location){
   Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
     if(err) {
       // User's Input cannot be found
@@ -66,6 +55,19 @@ router.get('/', (req, res, next) => {
     }
   });
 });
+
+
+router.get('/api/:lon/:lat', (req, res) => {
+  const { lat, lon } = req.params;
+  // request weather data with lat and lon...
+  const api = `https://api.darksky.net/forecast/6f3be8512aa00bf20706bd64b3a6f127/${lat},${lon}`;
+
+  request(api, function (error, response, body){
+    const json_2 = JSON.parse(body);
+    console.log(json_2.currently.temperature);
+  });
+  // return res.json({ weather: 'rain' });
+})
 
 // login
 router.get('/login', (req, res, next) => {
