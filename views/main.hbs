@@ -36,10 +36,12 @@
         <!-- show current location details at the start & if there is no user input -->
         {{else}}
         <body onload="geoFindMe()">
-        <div class="text-center" id="current-temp"></div>
-        <div class="text-center" id="location"></div>
-        <div class="text-center" id="feels-like"></div>
-        <div class="text-center" id="wind-speed"></div>
+          <div class="current-loc-weather">
+            <div class="text-center" id="current-temp"></div>
+            <div class="text-center" id="location"></div>
+            <div class="text-center" id="feels-like"></div>
+            <div class="text-center" id="wind-speed"></div>
+          </div>
       {{/if}}
     </div>
 
@@ -108,9 +110,9 @@ function weatherNow(latitude, longitude){
   fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
     return res.json();
   }).then( (data) => {
-    document.getElementById("current-temp").innerHTML = data.currentTemp;
-    document.getElementById("feels-like").innerHTML = data.currentFeels;
-    document.getElementById("wind-speed").innerHTML = data.windSpeed;
+    document.getElementById("current-temp").innerHTML = "Current Temp: " + data.currentTemp;
+    document.getElementById("feels-like").innerHTML = "Feels Like: " + data.currentFeels;
+    document.getElementById("wind-speed").innerHTML = "Wind Chill: " + data.windSpeed;
 
   }).catch( (err) => {
     console.log(err.message);

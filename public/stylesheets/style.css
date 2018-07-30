@@ -35,6 +35,12 @@ h3 {
   padding: 10px;
 }
 
+.current-loc-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 div .today-weather {
   display: flex;
   flex-direction: column;
@@ -52,7 +58,7 @@ div .today-weather {
 .today-weather .weather-temp {
   display: flex;
   flex-direction: row;
-  
+
 }
 
 .section .landing-today-weather {
