@@ -1,7 +1,6 @@
 <header>
   <h1>WeatherWear</h1>
-
-  {{# if currentUserId}}
+    {{# if currentUserId}}
   <div class="section landing-content">
     <div class="section landing-today-weather">
       <!-- show only user input IF THERE IS A USER INPUT -->
@@ -42,12 +41,13 @@
             <div class="text-center" id="feels-like"></div>
             <div class="text-center" id="wind-speed"></div>
           </div>
+
       {{/if}}
     </div>
 
     <div class="section landing-buttons">
 
-      <a href="/dateLog/compare">
+      <a href="/dateLog/compare" onclick="geoFindMe_compare()">
         <div class="section landing-compare">
           <h2>Compare</h2>
           <p>Find days that have a similar temperature as today!</p>
@@ -117,5 +117,42 @@ function weatherNow(latitude, longitude){
   }).catch( (err) => {
     console.log(err.message);
   });
+}
+
+// frontend call to backend function to pass current location so that route can find by temp
+function geoFindMe_compare(){
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success2(position){
+    const lat  = position.coords.latitude;
+    const long = position.coords.longitude;
+
+    const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
+                 &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
+    const options = { method: 'GET' };
+
+    return fetch(api, options).then((res) => {
+      return res.json()
+    }).then((data) => {
+      if(data.error){
+        console.log("There's something wrong with your Geolocation API");
+      }
+      else{
+        console.log("i'm in 2nd geofindme");
+
+        // TODO: Fetch to pass long/lat to backend ONLY
+
+      }
+    });
+  }
+
+  function error2() {
+    output.innerHTML = "Unable to retrieve your location";
+  }
+
+  navigator.geolocation.getCurrentPosition(success2, error2);
 }
 </script>

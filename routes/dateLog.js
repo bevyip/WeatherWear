@@ -35,7 +35,6 @@ function setToday(){
   return ans;
 }
 
-
 // Main page which shows current location details at the start,
 // After submitting input, shows new location details at main page.
 router.post('/', auth.requireLogin, (req, res, next) => {
@@ -113,10 +112,58 @@ router.get('/all', auth.requireLogin, (req, res, next) => {
 });
 
 // goes to compare page
+// shows user inputs based on range of temperature (aveTemp +/- 5)
+// where user can select to READ MORE
 router.get('/compare', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
+  const currentDate = setToday();
+  // need current location passed here
 
-  res.render('dateLog/compare', { currentUserId: currentUserId });
+  DateLog.find({user: currentUserId, date: currentDate}, function(err, dateLogs){
+    if(err) {
+      // User's Input cannot be found (no input by today's date)
+      // display inputs based on current temp
+
+      // TODO: use current location coords and fetch DarkSky current temp (answer)
+      // Filter Weathers based on answer, get weather-ID, match with specific DateLogs created
+
+      res.render('dateLog/compare', { currentUserId: currentUserId, dateLogs: dateLogs });
+    } else {
+      // User's Input found (input by today's date!)
+      // display inputs based on user-set temp
+
+      // use today's date and search through Weathers to find current temp (answer)
+      Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
+        if (err){
+          console.log("Can't find weather from user's input today");
+        } else {
+          const todayTemp = weather.aveTemp; // current temp
+
+          // TODO: find aveTemp values that lie within [todayTemp-5, todayTemp+5]
+          // Filter Weathers based on answer, get weather-ID, match with specific DateLogs created
+          Weather.find({user: currentUserId, todayTemp: todayTemp}, function(err, weathers){
+            if (err){
+              // TODO: render compare page with a message that says no similar input found
+            }
+
+            else {
+              // TODO: for every weather found, match ID with the DateLog created as well
+              DateLog.find({user: currentUserId, weatherID: weatherID}, function(err, dateLogs){
+                if (err) {
+                  console.log("There's an error with filtering DateLogs with Weather");
+                } else {
+                  // TODO: render compare page with filtered dateLogs (success!)
+                }
+              })
+            }
+
+          })
+
+        }
+      })
+      
+    }
+  });
 });
 
 // goes to new input page (dateLog/ new.hbs)
