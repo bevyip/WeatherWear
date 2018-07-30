@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 var Loc = require('../models/location');
 var Weather = require('../models/weather');
+const request = require('request');
 
 const auth = require('./helpers/auth');
 
@@ -44,6 +45,16 @@ router.get('/', (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
 
+  // function convertAdd(lat, long) {
+  //   console.log("lat: " + lat);
+  //   console.log("long: " + long);
+  //
+  //   request('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc', function (error, response, body){
+  //     console.log("body: " + body);
+  //     console.log("hello");
+  //   });
+  // }
+
   // Weather.find({user: currentUserId, date: currentDate}, function(err, weather, location){
   Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
     if(err) {
@@ -51,7 +62,7 @@ router.get('/', (req, res, next) => {
       // Front-end show no weather for today
       res.render('main', { currentUserId: currentUserId });
     } else {
-      res.render('main', { currentUserId: currentUserId, weather: weather });
+      res.render('main', { currentUserId: currentUserId, weather: weather});
     }
   });
 });

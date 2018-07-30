@@ -28,11 +28,43 @@ h3 {
 
 .section.landing-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: auto;
   padding: 10px;
+}
+
+div .today-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.today-weather .weather-sub-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.today-weather .weather-temp {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.section .landing-today-weather {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section.landing-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .section.landing-compare, .section.landing-create {

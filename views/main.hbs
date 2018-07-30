@@ -1,10 +1,44 @@
 <header>
-    <h1>WeatherWear</h1>
+  <h1>WeatherWear</h1>
 
-    {{# if currentUserId}}
-    <p class="text-center"><button onclick="geoFindMe()">Show my location</button></p>
-    <div class="text-center" id="out"></div>
-    <div class="section landing-content">
+  {{# if currentUserId}}
+  <p class="text-center"><button onclick="geoFindMe()">Show my location</button></p>
+
+  <div class="text-center" id="out"></div>
+  <div class="section landing-content">
+    <div class="section landing-today-weather">
+      {{# if weather}}
+        {{#each weather as |w|}}
+        <div class="today-weather">
+          <div class="weather-heading">
+            <h4>{{w.avetemp}}</h4>
+          </div>
+
+          <div class="weather-sub-heading">
+            <h5>{{w.location}}</h5>
+            <h6>{{w.date}}</h6>
+          </div>
+
+          <div class="weather-temp">
+            <p>{{w.highTemp}}</p>
+            <p>{{w.lowTemp}}</p>
+          </div>
+
+          <div class="weather-wind">
+            <p>{{w.avgwindchill}}</p>
+          </div>
+
+          <div class="weather-feels">
+            <p>{{w.highfeels}}</p>
+            <p>{{w.lowfeels}}</p>
+          </div>
+        </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <div class="section landing-buttons">
+
       <a href="/dateLog/compare">
         <div class="section landing-compare">
           <h2>Compare</h2>
@@ -19,21 +53,9 @@
         </div>
       </a>
     </div>
-    {{/if}}
+  </div>
+  {{/if}}
 
-    {{# if weather}}
-      {{#each weather as |w|}}
-        <div class="today-weather">
-          <h2>{{w.location}}</h2>
-          <h2>{{w.date}}</h2>
-          <h2>{{w.highTemp}}</h2>
-          <h2>{{w.lowTemp}}</h2>
-          <h2>{{w.avgwindchill}}</h2>
-          <h2>{{w.highfeels}}</h2>
-          <h2>{{w.lowfeels}}</h2>
-        </div>
-      {{/each}}
-    {{/if}}
 </header>
 
 <script>
@@ -45,11 +67,25 @@ function geoFindMe() {
     return;
   }
 
-  function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
+  function success(position){
+    const lat  = position.coords.latitude;
+    const long = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
+                 &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
+    const options = { method: 'GET' };
+
+    return fetch(api, options).then((res) => {
+      return res.json()
+    }).then((data) => {
+      if(data.error){
+        console.log("Woops")
+      }
+      else{
+        // console.log(data)
+        output.innerHTML = '<p>Latitude is ' + lat + '° <br>Longitude is ' + long + '°</p>';
+      }
+    })
   }
 
 
