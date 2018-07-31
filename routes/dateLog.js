@@ -162,7 +162,16 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
                 console.log("There's an error with filtering DateLogs with Weather");
               } else {
                 // render compare page with filtered dateLogs (success!)
-                res.render('dateLog/compare', { currentUserId: currentUserId, dateLogs: dateLogs});
+                let resultArr = [];
+
+                for (let i=0; i<dateLogs.length; i++){
+                  resultArr.push({
+                    dateLogs: dateLogs[i],
+                    weathers: filteredWeathers[i]
+                  });
+                }
+
+                res.render('dateLog/compare', { currentUserId: currentUserId, results: resultArr});
               }
             });
           }
@@ -208,7 +217,16 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
                   console.log("There's an error with filtering DateLogs with Weather");
                 } else {
                   // Render compare page with filtered dateLogs (success!)
-                  res.render('dateLog/compare', { currentUserId: currentUserId, dateLogs: dateLogs});
+                  let resultArr = [];
+
+                  for (let i=0; i<dateLogs.length; i++){
+                    resultArr.push({
+                      dateLogs: dateLogs[i],
+                      weathers: filteredWeathers[i]
+                    });
+                  }
+
+                  res.render('dateLog/compare', { currentUserId: currentUserId, results: resultArr});
                 }
               });
             }

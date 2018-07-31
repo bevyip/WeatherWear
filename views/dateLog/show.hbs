@@ -1,4 +1,3 @@
-<h1>This is a page to view a selected dateLog</h1>
 
 <div class="inputs-body">
   <h4>You selected dateLog created on: {{dateLog.date}}</h4>
@@ -9,6 +8,9 @@
   <p>Outerwear: {{dateLog.outerwear}}</p>
   <p>Others: {{dateLog.others}}</p>
   <p>Top: {{dateLog.top}}</p>
-  <p> You felt: {{dateLog.userFeels}}</p>
-  <p>Weather stuff: {{weather.date}}</p>
+  <p>You felt: {{dateLog.userFeels}}</p>
+  <p>Average Wind Chill: {{{weather.avgwindchill}}}</p>
+  <p>High Feels Like: {{weather.highfeels}}</p>
+  <p>Low Feels Like: {{weather.lowfeels}}</p>
+  <p>Average temperature: {{weather.avetemp}}°F</p>
   </div>
