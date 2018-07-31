@@ -86,6 +86,7 @@ div .today-weather {
   padding: 20px;
   border: 1px solid black;
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .new-input-content {
@@ -97,6 +98,10 @@ div .today-weather {
 
 .new-input-stuff {
   margin: auto;
+}
+
+.inputs.summary h3 {
+  counter-reset: my-sec-counter;
 }
 
 select {

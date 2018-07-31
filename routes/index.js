@@ -46,7 +46,7 @@ router.get('/', (req, res, next) => {
   const currentDate = setToday();
 
   Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
-    if(err) {
+    if(err || weather.length === 0) {
       // User's Input cannot be found
       // Front-end show no weather for today
       res.render('main', { currentUserId: currentUserId });

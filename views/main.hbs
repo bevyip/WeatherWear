@@ -1,155 +1,160 @@
 <header>
   <h1>WeatherWear</h1>
-    {{# if currentUserId}}
+  {{# if currentUserId}}
   <div class="section landing-content">
-    <div class="section landing-today-weather">
+    <!-- <div class="section landing-today-weather"> -->
       <!-- show only user input IF THERE IS A USER INPUT -->
       {{# if weather}}
-        {{#each weather as |w|}}
-        <div class="today-weather">
-          <div class="weather-heading">
-            <h4>{{w.avetemp}}°F</h4>
-          </div>
-
-          <div class="weather-sub-heading">
-            <h5>{{w.location}}</h5>
-            <h6>{{w.date}}</h6>
-          </div>
-
-          <div class="weather-temp">
-            <p>{{w.highTemp}}</p>
-            <p>{{w.lowTemp}}</p>
-          </div>
-
-          <div class="weather-wind">
-            <p>{{w.avgwindchill}}</p>
-          </div>
-
-          <div class="weather-feels">
-            <p>{{w.highfeels}}</p>
-            <p>{{w.lowfeels}}</p>
-          </div>
+      {{#each weather as |w|}}
+      <div class="today-weather">
+        <div class="weather-heading">
+          <h4>{{w.avetemp}}°F</h4>
         </div>
-        {{/each}}
 
-        <!-- show current location details at the start & if there is no user input -->
-        {{else}}
-        <body onload="geoFindMe()">
-          <div class="current-loc-weather">
-            <div class="text-center" id="current-temp"></div>
-            <div class="text-center" id="location"></div>
-            <div class="text-center" id="feels-like"></div>
-            <div class="text-center" id="wind-speed"></div>
-          </div>
+        <div class="weather-sub-heading">
+          <h5>{{w.location}}</h5>
+          <h6>{{w.date}}</h6>
+        </div>
 
-      {{/if}}
-    </div>
+        <div class="weather-temp">
+          <p>{{w.highTemp}}</p>
+          <p>{{w.lowTemp}}</p>
+        </div>
 
-    <div class="section landing-buttons">
+        <div class="weather-wind">
+          <p>{{w.avgwindchill}}</p>
+        </div>
 
-      <div onclick="geoFindMe_compare()">
-        <div class="section landing-compare">
-          <h2>Compare</h2>
-          <p>Find days that have a similar temperature as today!</p>
+        <div class="weather-feels">
+          <p>{{w.highfeels}}</p>
+          <p>{{w.lowfeels}}</p>
         </div>
       </div>
+      {{/each}}
 
-      <a href="/dateLog/new">
-        <div class="section landing-create">
-          <h2>Create</h2>
-          <p>Haven't made a log for today? Create one now!</p>
+      <!-- show current location details at the start & if there is no user input -->
+      {{else}}
+      <body onload="geoFindMe()">
+        <div class="current-loc-weather">
+          <div class="text-center" id="current-temp"></div>
+          <div class="text-center" id="location"></div>
+          <div class="text-center" id="feels-like"></div>
+          <div class="text-center" id="wind-speed"></div>
         </div>
-      </a>
+      <!-- </div> -->
+
+      <div class="section landing-buttons">
+        <div onclick="create()">
+          <div class="section landing-create">
+            <h2>Create</h2>
+            <p>Haven't made a log for today? Create one now!</p>
+          </div>
+        </div>
+
+      {{/if}}
+
+        <div onclick="geoFindMe_compare()">
+          <div class="section landing-compare">
+            <h2>Compare</h2>
+            <p>Find days that have a similar temperature as today!</p>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-  {{/if}}
+    {{/if}}
 
-</header>
+  </header>
 
-<script>
-// frontend call to get current location
-function geoFindMe() {
-  let output = document.getElementById("location");
+  <script>
+  // frontend call to get current location
+  function geoFindMe() {
+    let output = document.getElementById("location");
 
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
+    if (!navigator.geolocation){
+      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+      return;
+    }
+
+    function success(position){
+      const lat  = position.coords.latitude;
+      const long = position.coords.longitude;
+
+      const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
+      &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
+      const options = { method: 'GET' };
+
+      return fetch(api, options).then((res) => {
+        return res.json()
+      }).then((data) => {
+        if(data.error){
+          console.log("There's something wrong with your Geolocation API");
+        }
+        else{
+          output.innerHTML = 'You\'re currently at ' + data.results[0].formatted_address;
+
+          weatherNow(lat, long);
+        }
+      });
+    }
+
+    function error() {
+      output.innerHTML = "Unable to retrieve your location";
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
-  function success(position){
-    const lat  = position.coords.latitude;
-    const long = position.coords.longitude;
+  //frontend call to get current location's weather deets
+  function weatherNow(latitude, longitude){
+    fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
+      return res.json();
+    }).then( (data) => {
+      document.getElementById("current-temp").innerHTML = "Current Temp: " + data.currentTemp;
+      document.getElementById("feels-like").innerHTML = "Feels Like: " + data.currentFeels;
+      document.getElementById("wind-speed").innerHTML = "Wind Chill: " + data.windSpeed;
 
-    const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
-                 &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
-    const options = { method: 'GET' };
-
-    return fetch(api, options).then((res) => {
-      return res.json()
-    }).then((data) => {
-      if(data.error){
-        console.log("There's something wrong with your Geolocation API");
-      }
-      else{
-        output.innerHTML = 'You\'re currently at ' + data.results[0].formatted_address;
-
-        weatherNow(lat, long);
-      }
+    }).catch( (err) => {
+      console.log(err.message);
     });
   }
 
-  function error() {
-    output.innerHTML = "Unable to retrieve your location";
+  // frontend call to backend function to pass current location so that route can find by temp
+  function geoFindMe_compare(){
+    if (!navigator.geolocation){
+      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+      return;
+    }
+
+    function success2(position){
+      const lat  = position.coords.latitude;
+      const long = position.coords.longitude;
+
+      const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
+      &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
+      const options = { method: 'GET' };
+
+      return fetch(api, options).then((res) => {
+        return res.json()
+      }).then((data) => {
+        if(data.error){
+          console.log("There's something wrong with your Geolocation API");
+        }
+        else{
+          window.location.href = `http://localhost:3000/dateLog/compare/${long}/${lat}`;
+        }
+      });
+    }
+
+    function error2() {
+      output.innerHTML = "Unable to retrieve your location";
+    }
+
+    navigator.geolocation.getCurrentPosition(success2, error2);
   }
 
-  navigator.geolocation.getCurrentPosition(success, error);
-}
-
-//frontend call to get current location's weather deets
-function weatherNow(latitude, longitude){
-  fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
-    return res.json();
-  }).then( (data) => {
-    document.getElementById("current-temp").innerHTML = "Current Temp: " + data.currentTemp;
-    document.getElementById("feels-like").innerHTML = "Feels Like: " + data.currentFeels;
-    document.getElementById("wind-speed").innerHTML = "Wind Chill: " + data.windSpeed;
-
-  }).catch( (err) => {
-    console.log(err.message);
-  });
-}
-
-// frontend call to backend function to pass current location so that route can find by temp
-function geoFindMe_compare(){
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
+  // function call to check that there is no input from today before allowing user to create
+  function create(){
+    window.location.href = 'http://localhost:3000/dateLog/new';
   }
-
-  function success2(position){
-    const lat  = position.coords.latitude;
-    const long = position.coords.longitude;
-
-    const api = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}
-                 &key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc`
-    const options = { method: 'GET' };
-
-    return fetch(api, options).then((res) => {
-      return res.json()
-    }).then((data) => {
-      if(data.error){
-        console.log("There's something wrong with your Geolocation API");
-      }
-      else{
-        window.location.href = `http://localhost:3000/dateLog/compare/${long}/${lat}`;
-      }
-    });
-  }
-
-  function error2() {
-    output.innerHTML = "Unable to retrieve your location";
-  }
-
-  navigator.geolocation.getCurrentPosition(success2, error2);
-}
 </script>
