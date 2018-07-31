@@ -226,4 +226,23 @@ router.get('/new', auth.requireLogin, (req, res, next) => {
   res.render('dateLog/new', { currentUserId: currentUserId });
 });
 
+// goes to show individual user input log (dateLog/ show.hbs)
+router.get('/show/:id', auth.requireLogin, (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  // SINGLE ELEMENT/ RESOURCE
+  DateLog.findById(req.params.id, function(err, dateLog){
+    if(err) { console.error(err) };
+
+    // find the weather (weather._id) that corresponds to the dateLog.weatherId
+    Weather.findById(dateLog.weather, function(err, weather) {
+      if(err) {
+        console.error(err)
+      } else{
+        res.render('dateLog/show', { currentUserId: currentUserId, dateLog: dateLog, weather: weather });
+      }
+    });
+  })
+})
+
 module.exports = router;
