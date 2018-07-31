@@ -26,6 +26,11 @@ h3 {
   margin-top: 10px;
 }
 
+.navbar-brand a, .navbar-brand a:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
 .section.landing-content {
   display: flex;
   flex-direction: column;

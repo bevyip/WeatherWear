@@ -1,7 +1,5 @@
-<h1>This is the compare page</h1>
-
 <div class="filtered-body">
-  {{# if dateLogs}}
+
   {{#each dateLogs as |log|}}
   <div class="content inputs summary">
     <ol>
@@ -18,7 +16,8 @@
   </form> -->
 </div>
 {{/each}}
-{{else}}
-  <h3>{{message}}</h3>
-{{/if}}
+
+<h3>{{message}}</h3>
+
+
 </div>

@@ -79,7 +79,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
         avgwindchill: JSON.stringify(json_2.daily.data[0].windSpeed) + "m/s",
         highfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMax) + "°F",
         lowfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMin) + "°F",
-        avetemp: JSON.stringify(json_2.currently.apparentTemperature) + "°F"
+        avetemp: JSON.stringify(json_2.currently.apparentTemperature)
       });
 
       weather.user = req.session.userId;
@@ -124,7 +124,7 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
   const { lat, lon } = req.params;
 
   DateLog.find({user: currentUserId, date: currentDate}, function(err, dateLogs){
-    if(err) {
+    if(err || dateLogs.length === 0) {
       // User's Input cannot be found (no input by today's date)
       // display inputs based on current temp
 
@@ -133,14 +133,13 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
 
       request(api, function (error, response, body){
         const json = JSON.parse(body);
-        const currentTemp = JSON.stringify(json.currently.temperature) + "°F";
-        const lowCurrTemp = JSON.stringify(json.currently.temperature - 10) + "°F";
-        const highCurrTemp = JSON.stringify(json.currently.temperature + 10) + "°F";
+        const currentTemp = Number(JSON.stringify(json.currently.temperature));
+        const lowCurrTemp = currentTemp - 10;
+        const highCurrTemp = currentTemp + 10;
 
-        // Find aveTemp values that lie within [lowCurrTemp, highCurrTemp]
         // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
-        Weather.find({user: currentUserId, avetemp: { $lte: highCurrTemp, $gte: lowCurrTemp }}, function(err, weathers){
-          if (err){
+        Weather.find({user: currentUserId}, function(err, weathers){
+          if (err || weathers.length === 0){
             // Render compare page with a message that says no similar input found
             // can be done with front end if statement!
             const message = "No user inputs with similar temperature range."
@@ -148,8 +147,15 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
           }
 
           else {
-            // for every weather found, match Id with the DateLog created as well
-            const weatherId = weathers.map(weather => {return weather.id}); //array of ids
+            // For every weather found, match Id with the DateLog created as well
+            // Find aveTemp values that lie within [lowCurrTemp, highCurrTemp]
+            const filteredWeathers = weathers.filter((val) => {
+              if (Number(val.avetemp) > lowCurrTemp && Number(val.avetemp) < highCurrTemp) {
+                return val;
+              }
+            });
+
+            const weatherId = filteredWeathers.map(weather => {return weather._id}); //array of ids
 
             DateLog.find({user: currentUserId, weather: {$in: weatherId} }, function(err, dateLogs){
               if (err) {
@@ -163,24 +169,23 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
         });
       });
 
-    } else {
+    }
+    else {
       // User's Input found (input by today's date!)
       // display inputs based on user-set temp
 
       // use today's date and search through Weathers to find current temp (answer)
       Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
-        if (err){
+        if (err || weather.length === 0){
           console.log("Can't find weather from user's input today");
         } else {
-          let todayTemp = weather[0].avetemp; // current temp
-          let tempTemp = todayTemp.substring(0,todayTemp.length-2);
-          const lowTodayTemp = (tempTemp - 10) + "°F";
-          const highTodayTemp = (tempTemp + 10) + "°F";
+          let todayTemp = Number(weather[0].avetemp); // current temp
+          const lowTodayTemp = todayTemp - 10;
+          const highTodayTemp = todayTemp + 10;
 
-          // Find aveTemp values that lie within [lowTodayTemp, highTodayTemp]
           // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
-          Weather.find({user: currentUserId, avetemp: { $lte: highTodayTemp, $gte: lowTodayTemp }}, function(err, weathers){
-            if (err){
+          Weather.find({user: currentUserId}, function(err, weathers){
+            if (err || weathers.length === 0){
               // Render compare page with a message that says no similar input found
               // can be done with front end if statement!
               const message = "No user inputs with similar temperature range."
@@ -188,8 +193,15 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
             }
 
             else {
-              // TODO: for every weather found, match Id with the DateLog created as well
-              const weather_Id = weathers.map(weather => {return weather.id}); //array of ids
+              // For every weather found, match Id with the DateLog created as well
+              // Find aveTemp values that lie within [lowTodayTemp, highTodayTemp]
+              const filteredWeathers = weathers.filter((val) => {
+                if (Number(val.avetemp) > lowTodayTemp && Number(val.avetemp) < highTodayTemp) {
+                  return val;
+                }
+              });
+
+              const weather_Id = filteredWeathers.map(weather => { return weather._id }); //array of ids
 
               DateLog.find({user: currentUserId, weather: {$in: weather_Id}}, function(err, dateLogs){
                 if (err) {
