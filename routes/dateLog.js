@@ -57,14 +57,11 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 
     location.user = req.session.userId;
     dateLog.user = req.session.userId;
+
     dateLog.long = JSON.stringify(json.results[0].geometry.location.lng);
     dateLog.lat = JSON.stringify(json.results[0].geometry.location.lat);
 
     location.save(function(err, loc) {
-      if(err) { console.error(err) };
-    });
-
-    dateLog.save(function(err, dateLog) {
       if(err) { console.error(err) };
     });
 
@@ -88,10 +85,17 @@ router.post('/', auth.requireLogin, (req, res, next) => {
       weather.user = req.session.userId;
       weather.location = req.body.location;
 
-      weather.save(function(err, dateLog) {
-        if(err) { console.error(err) };
+      weather.save(function(err, weather) {
+        dateLog.weather = weather._id;
 
-        return res.redirect('/');
+        dateLog.save(function(err, dateLog) {
+          if(err) { console.error(err) };
+        // }).then(() => {
+          return res.redirect('/');
+        });
+
+        // if(err) { console.error(err) };
+
       });
     });
   });
@@ -114,14 +118,13 @@ router.get('/all', auth.requireLogin, (req, res, next) => {
 // goes to compare page
 // shows user inputs based on range of temperature (aveTemp +/- 5)
 // where user can select to READ MORE
-
 router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
   const { lat, lon } = req.params;
 
   DateLog.find({user: currentUserId, date: currentDate}, function(err, dateLogs){
-    if(err) {
+    // if(err) {
       // User's Input cannot be found (no input by today's date)
       // display inputs based on current temp
 
@@ -131,12 +134,12 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
       request(api, function (error, response, body){
         const json = JSON.parse(body);
         const currentTemp = JSON.stringify(json.currently.temperature) + "°F";
-        const lowCurrTemp = JSON.stringify(json.currently.temperature - 5) + "°F";
-        const highCurrTemp = JSON.stringify(json.currently.temperature + 5) + "°F";
+        const lowCurrTemp = JSON.stringify(json.currently.temperature - 10) + "°F";
+        const highCurrTemp = JSON.stringify(json.currently.temperature + 10) + "°F";
 
-        // TODO: find aveTemp values that lie within [lowCurrTemp, highCurrTemp]
+        // Find aveTemp values that lie within [lowCurrTemp, highCurrTemp]
         // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
-        Weather.find({user: currentUserId, currentTemp: currentTemp}, function(err, weathers){
+        Weather.find({user: currentUserId, avetemp: { $lte: highCurrTemp, $gte: lowCurrTemp }}, function(err, weathers){
           if (err){
             // TODO: render compare page with a message that says no similar input found
             // can be done with front end if statement!
@@ -145,59 +148,57 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
 
           else {
             // TODO: for every weather found, match Id with the DateLog created as well
-            DateLog.find({user: currentUserId, weatherId: weatherId}, function(err, dateLogs){
+            const weatherId = weathers.map(weather => {return weather.id}); //array of ids
+
+            DateLog.find({user: currentUserId, weather: {$in: weatherId} }, function(err, dateLogs){
               if (err) {
                 console.log("There's an error with filtering DateLogs with Weather");
               } else {
                 // TODO: render compare page with filtered dateLogs (success!)
+                res.render('dateLog/compare', { currentUserId: currentUserId, dateLogs: dateLogs});
               }
-            })
+            });
           }
-        })
-
-        res.render('dateLog/compare', { currentUserId: currentUserId});
+        });
       });
 
-    } else {
+    // } else {
       // User's Input found (input by today's date!)
       // display inputs based on user-set temp
-
-      // use today's date and search through Weathers to find current temp (answer)
-      Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
-        console.log(weather);
-        if (err){
-          console.log("Can't find weather from user's input today");
-        } else {
-          let todayTemp = weather[0].avetemp; // current temp
-          let tempTemp = todayTemp.substring(0,todayTemp.length-2);
-          const lowTodayTemp = (tempTemp - 5) + "°F";
-          const highTodayTemp = (tempTemp + 5) + "°F";
-
-          // TODO: find aveTemp values that lie within [lowTodayTemp, highTodayTemp]
-          // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
-          Weather.find({user: currentUserId, todayTemp: todayTemp}, function(err, weathers){
-            if (err){
-              // TODO: render compare page with a message that says no similar input found
-              // can be done with front end if statement!
-              res.render('dateLog/compare', { currentUserId: currentUserId});
-            }
-
-            else {
-              // TODO: for every weather found, match Id with the DateLog created as well
-              DateLog.find({user: currentUserId, weatherId: weatherId}, function(err, dateLogs){
-                if (err) {
-                  console.log("There's an error with filtering DateLogs with Weather");
-                } else {
-                  // TODO: render compare page with filtered dateLogs (success!)
-                }
-              })
-            }
-          })
-
-        }
-      })
-
-    }
+      //
+      // // use today's date and search through Weathers to find current temp (answer)
+      // Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
+      //   if (err){
+      //     console.log("Can't find weather from user's input today");
+      //   } else {
+      //     let todayTemp = weather[0].avetemp; // current temp
+      //     let tempTemp = todayTemp.substring(0,todayTemp.length-2);
+      //     const lowTodayTemp = (tempTemp - 10) + "°F";
+      //     const highTodayTemp = (tempTemp + 10) + "°F";
+      //
+      //     // Find aveTemp values that lie within [lowTodayTemp, highTodayTemp]
+      //     // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
+      //     Weather.find({user: currentUserId, avetemp: { $lte: highTodayTemp, $gte: lowTodayTemp }}, function(err, weathers){
+      //       if (err){
+      //         // TODO: render compare page with a message that says no similar input found
+      //         // can be done with front end if statement!
+      //         res.render('dateLog/compare', { currentUserId: currentUserId});
+      //       }
+      //
+      //       else {
+      //         // TODO: for every weather found, match Id with the DateLog created as well
+      //         DateLog.find({user: currentUserId, weather: weatherId}, function(err, dateLogs){
+      //           if (err) {
+      //             console.log("There's an error with filtering DateLogs with Weather");
+      //           } else {
+      //             // TODO: render compare page with filtered dateLogs (success!)
+      //           }
+      //         });
+      //       }
+      //     });
+      //   }
+      // });
+    // }
   });
 });
 

@@ -11,6 +11,7 @@ const dateLogSchema = new Schema ({
   location: { type: String, required: true},
   long: { type: String, required: true},
   lat: { type: String, required: true},
+  weather: { type:  Schema.Types.ObjectId, ref: 'weather', required: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 

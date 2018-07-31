@@ -1,1 +1,20 @@
 <h1>This is the compare page</h1>
+
+<div class="filtered-body">
+    {{#each dateLogs as |log|}}
+    <div class="content inputs summary">
+      <ol>
+        <h3><li>This is a filtered log.</li></h3>
+        <div class="log-stuff">
+          <p class="logstuff log-date">Date: {{log.date}}</p>
+          <p class="logstuff log-date">Location: {{log.location}}</p>
+          <a href="dateLog/show">Read More</a>
+        </div>
+      </ol>
+      <!-- <form class="form" method="POST" action="/inputs?_method=DELETE">
+        <input style="visibility: hidden; margin:-90px;" name="delete_id" value="{{this._id}}" >
+        <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
+      </form> -->
+    </div>
+    {{/each}}
+  </div>
