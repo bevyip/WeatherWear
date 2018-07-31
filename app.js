@@ -4,16 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index'); 
+var indexRouter = require('./routes/index');
 var mainRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dateLogRouter = require('./routes/dateLog');
+var methodOverride = require('method-override');
 
 var app = express();
 
 // configure sessions
 const session = require('express-session');
 app.use(session({ secret: 'secret-unique-code', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true }));
+
+app.use(methodOverride('_method'))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

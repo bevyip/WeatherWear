@@ -263,4 +263,23 @@ router.get('/show/:id', auth.requireLogin, (req, res, next) => {
   })
 })
 
+//delete a dateLog
+router.delete('/:id', auth.requireLogin, (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  DateLog.findByIdAndRemove(req.params.id, function(err, dateLog) {
+    if (err) { console.error(err); }
+    else{
+      Weather.findByIdAndRemove(dateLog.weather, function(err, weather){
+        if (err) { console.error(err); }
+        else{
+          Location.findOneAndDelete( {user: currentUserId, date: dateLog.date}).then(() => {
+            res.redirect('/dateLog/all')
+          });
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

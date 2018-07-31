@@ -9,10 +9,11 @@
           <p class="inputstuff input-date">Location: {{input.location}}</p>
           <a class="inputstuff input-link" href="/dateLog/show/{{input._id}}">Read More</a>
         </div>
-      <!-- <form class="form" method="POST" action="/inputs?_method=DELETE">
-        <input style="visibility: hidden; margin:-90px;" name="delete_id" value="{{this._id}}" >
+
+        <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
         <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
-      </form> -->
+      </form></p>
+      
     </div>
   </li>
     {{/each}}

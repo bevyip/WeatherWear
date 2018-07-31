@@ -117,3 +117,24 @@ select {
   flex-direction: row;
   justify-content: center;
 }
+
+button #trash {
+  color: #FFCC00 !important;
+  background-color:inherit !important;
+  border-color: #680707 !important;
+  border: none;
+  margin: auto;
+  font-size: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
+button #trash:hover {
+  color: white !important;
+
+}
+
+button #trash:focus #trash:active {
+   outline: none !important;
+   box-shadow: none;
+}

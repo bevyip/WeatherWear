@@ -1,7 +1,7 @@
 <div class="filtered-body">
-<ol>
-  {{#each results as |result|}}
-  <li><div class="content inputs summary">
+  <ol>
+    {{#each results as |result|}}
+    <li><div class="content inputs summary">
       <h3>This is a filtered log.</h3>
       <div class="section log-stuff">
         <p class="logstuff log-date">Date: {{result.dateLogs.date}}</p>
@@ -9,17 +9,11 @@
         <p class="logstuff log-avetemp">Average Temperature: {{result.weathers.avetemp}}°F</p>
         <a class="logstuff log-link" href="/dateLog/show/{{result.dateLogs._id}}">Read More</a>
       </div>
-
-    <!-- <form class="form" method="POST" action="/inputs?_method=DELETE">
-    <input style="visibility: hidden; margin:-90px;" name="delete_id" value="{{this._id}}" >
-    <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
-  </form> -->
-</div>
-</li>
-{{/each}}
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <h3>{{message}}</h3>
-
 
 </div>

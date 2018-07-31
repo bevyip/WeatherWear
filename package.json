@@ -16,6 +16,7 @@
     "google-geolocation": "^1.0.2",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
+    "method-override": "^3.0.0",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.5",
     "morgan": "~1.9.0",
