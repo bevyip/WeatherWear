@@ -8,7 +8,7 @@
 .section.landing-page {
   position: absolute;
   overflow: hidden;
-  height: 532px;
+  height: 588px;
   width: 100%;
 }
 
@@ -40,6 +40,7 @@
   letter-spacing: 4px;
   font-weight: bold;
   color:#F5F5F5;
+  text-shadow: 2px 2px black;
 
   display: flex;
   justify-content: center;
@@ -82,9 +83,14 @@
               border-color 0.3s ease-in;
 }
 
+/* change */
 .navbar a, .navbar a:hover {
-  color: #181818 !important;
+  color: white !important;
   text-decoration: none;
+}
+/* change */
+.navbar {
+  background-color: black;
 }
 
 h2 {

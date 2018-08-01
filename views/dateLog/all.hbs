@@ -1,3 +1,14 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a href="/">WeatherWear</a>
+  </div>
+
+  <div class="navbar-text">
+      <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+      <a class="navbar-link" href="/logout">Sign Out</a>
+  </div>
+</nav>
+
 <div class="inputs-body">
     <ol>
     {{#each dateLogs as |input|}}
@@ -13,7 +24,7 @@
         <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
         <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
       </form></p>
-      
+
     </div>
   </li>
     {{/each}}
