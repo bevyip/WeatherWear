@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
     } else {
       req.session.userId = user._id;
 
-      return res.redirect('/') ;
+      return res.redirect('main') ;
     }
   });
 });
@@ -101,7 +101,7 @@ router.get('/logout', (req, res, next) => {
     });
   }
 
-  return res.redirect('/login');
+  return res.redirect('main');
 });
 
 module.exports = router;

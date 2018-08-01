@@ -1,32 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const auth = require('./helpers/auth')
+const auth = require('./helpers/auth');
 
-//Users index
+/* GET users listing. */
 router.get('/', auth.requireLogin, (req, res, next) => {
   User.find({}, 'email', function(err, users) {
     if(err) {
-      console.error(err);
-    } else {
-      res.render('users/index', { users: users });
+      res.render('users/new');
     }
+    res.render('main');
   });
 });
 
 // Users new
-router.get('/new', (req, res, next) => {
+router.get('/new', function(req, res, next) {
   res.render('users/new');
-})
+});
 
 // Users create
 router.post('/', (req, res, next) => {
-  const user = new User(req.body);
+  const newUser = new User(req.body);
 
-  user.save(function(err, user) {
-    if(err) console.log(err);
-    return res.redirect('/users');
-  });
-})
+  User.find({email: newUser.email}, function(err, user){
+    if (err || user.length === 0){ // email doesn't exist so GOOD!
+      newUser.save(function(err, user) {
+        if (err) {
+          console.log(err);
+        }
+        req.session.userId = newUser._id;
+
+        res.render('main', { currentUserId: req.session.userId});
+      });
+    } else { //email exists
+      res.render('users/new', {showMessage: "true"});
+    }
+  })
+});
 
 module.exports = router;
