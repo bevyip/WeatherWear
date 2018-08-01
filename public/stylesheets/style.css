@@ -39,7 +39,7 @@
   font-size: 80px;
   letter-spacing: 4px;
   font-weight: bold;
-  color:#F5F5F5;
+  color:#FFFFFF;
   text-shadow: 2px 2px black;
 
   display: flex;
@@ -58,29 +58,169 @@
   display: inline-block;
   width: 200px;
   padding: 8px;
-  color: #fff;
-  background-color: transparent;
-  border: 2px solid #fff;
+
   text-align: center;
   font-family: Lato;
   font-weight: bold;
   letter-spacing: 0.2em;
   outline: none;
   text-decoration: none;
+}
+
+.buttons.sign-in-button {
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
   transition: color 0.3s ease-out,
                 background-color 0.3s ease-out,
                 border-color 0.3s ease-out;
 }
 
-.buttons:hover,
-.buttons:active {
+.buttons.sign-up-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #F8F8F8;
+  border-color: 2px solid #fff;
+  color: #080808;
+  transition: color 0.3s ease-out,
+              background-color 0.3s ease-out,
+              border-color 0.3s ease-out;
+}
+
+.buttons.sign-in-button:hover,
+.buttons.sign-in-button:active {
   text-decoration: none;
   background-color: #F8F8F8;
-  border-color: 3px solid #fff;
+  border-color: 2px solid #fff;
   color: #080808;
   transition: color 0.3s ease-in,
               background-color 0.3s ease-in,
               border-color 0.3s ease-in;
+}
+
+.buttons.sign-up-button:hover,
+.buttons.sign-up-button:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  transition: color 0.3s ease-in,
+                background-color 0.3s ease-in
+                /* border-color 0.3s ease-in; */
+}
+
+.section.sign-in-content {
+  position: absolute;
+  overflow: hidden;
+  height: 588px;
+  width: 100%;
+}
+
+.section.sign-in-content:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  padding: inherit;
+  background-image: url("../img/landing.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+
+.section.sign-in-background {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+
+  padding: 10px 80px 30px;
+  border-radius: 15px;
+}
+
+.section.sign-in-content h2 {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  text-align: center;
+  z-index: 2;
+  position: relative;
+
+  font-family: 'Playfair Display';
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 40px;
+}
+
+.sign-input {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.back-button a {
+  position:absolute;
+  display: flex;
+  flex-direction: row;
+  top: 10px;
+  left: 10px;
+  justify-content: flex-start;
+  z-index: 2;
+
+  font-family: 'Playfair Display';
+  font-size: 25px;
+  color: #FFFFFF !important;
+}
+
+.back-button a:hover, .back-button a:visited {
+  text-decoration: none;
+  color: #FFFFFF !important;
+}
+
+.form-group ::placeholder {
+  font-family: 'Josefin Sans';
+  font-size: 18px;
+}
+
+.form-group input[type="text"]{
+  font-family: Muli;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group label, .sign-up-link, .submit-button {
+  font-family: Muli;
+  font-size: 20px;
+}
+
+.sign-up-link a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.sign-up-link a:hover {
+  color: white;
+}
+
+.submit-button button {
+  background-color: #B44746;
+  border-color: #B44746;
+  font-size: 18px;
+}
+
+.submit-button button:hover {
+  background-color: #680808;
+  border-color: #680808;
 }
 
 /* change */
@@ -91,12 +231,6 @@
 /* change */
 .navbar {
   background-color: black;
-}
-
-h2 {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
 }
 
 h3 {

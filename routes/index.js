@@ -86,14 +86,11 @@ router.get('/login', (req, res, next) => {
 router.post('/login', (req, res, next) => {
   User.authenticate(req.body.email, req.body.password, (err, user) => {
     if (err || !user) {
-      const next_error = new Error("Email or Password incorrect");
-      next_error.status = 401;
-
-      return next(next_error);
+      return res.render('login', {showMessage: "true"});
     } else {
       req.session.userId = user._id;
 
-      return res.redirect('main') ;
+      return res.redirect('main');
     }
   });
 });
