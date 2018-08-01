@@ -106,7 +106,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 router.get('/all', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  DateLog.find({user: currentUserId}, function(err, dateLogs){
+  DateLog.find({user: currentUserId}).sort({date: 1}).exec(function(err, dateLogs){
     if(err) {
       console.error(err);
     } else {
@@ -164,7 +164,7 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
                 // render compare page with filtered dateLogs (success!)
                 let resultArr = [];
 
-                for (let i=0; i<dateLogs.length; i++){
+                for (let i=dateLogs.length-1; i>=0; i--){
                   resultArr.push({
                     dateLogs: dateLogs[i],
                     weathers: filteredWeathers[i]
@@ -219,7 +219,7 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
                   // Render compare page with filtered dateLogs (success!)
                   let resultArr = [];
 
-                  for (let i=0; i<dateLogs.length; i++){
+                  for (let i=dateLogs.length-1; i>=0; i--){
                     resultArr.push({
                       dateLogs: dateLogs[i],
                       weathers: filteredWeathers[i]
