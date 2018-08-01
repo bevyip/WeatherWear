@@ -40,15 +40,20 @@ router.use(function(req, res, next) {
   next();
 });
 
-// main landing page
-router.get('/', (req, res, next) => {
+//main landing page
+router.get('/', (req,res,next) => {
+  res.render('landing');
+})
+
+// main landing page AFTER SIGN IN
+router.get('/main', (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
 
   Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
     if(err || weather.length === 0) {
       // User's Input cannot be found
-      // Front-end show no weather for today
+      // Front-end show weather for current location, not user location
       res.render('main', { currentUserId: currentUserId });
     } else {
       res.render('main', { currentUserId: currentUserId, weather: weather});
@@ -101,7 +106,7 @@ router.get('/logout', (req, res, next) => {
     });
   }
 
-  return res.redirect('main');
+  return res.redirect('/');
 });
 
 module.exports = router;
