@@ -49,10 +49,10 @@
       <!-- show current location details at the start & if there is no user input -->
       {{else}}
         <div class="current-loc-weather">
-          <div class="text-center" id="current-temp"></div>
-          <div class="text-center" id="location"></div>
-          <div class="text-center" id="feels-like"></div>
-          <div class="text-center" id="wind-speed"></div>
+          <h6 class="text-center" id="location"></h6>
+          <h2 class="text-center" id="current-temp"></h2>
+          <p class="text-center" id="feels-like"></p>
+          <p class="text-center" id="wind-speed"></p>
         </div>
       </div>
 
@@ -83,8 +83,8 @@
         </div>
 
       </div>
-    </div>
     {{/if}}
+    </div>
 
 
   <script>
@@ -112,7 +112,7 @@
           console.log("There's something wrong with your Geolocation API");
         }
         else{
-          output.innerHTML = 'You\'re currently at ' + data.results[0].formatted_address;
+          output.innerHTML = data.results[0].formatted_address;
 
           weatherNow(lat, long);
         }
@@ -131,9 +131,9 @@
     fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
       return res.json();
     }).then( (data) => {
-      document.getElementById("current-temp").innerHTML = "Current Temp: " + data.currentTemp;
-      document.getElementById("feels-like").innerHTML = "Feels Like: " + data.currentFeels;
-      document.getElementById("wind-speed").innerHTML = "Wind Chill: " + data.windSpeed;
+      document.getElementById("current-temp").innerHTML = data.currentTemp;
+      document.getElementById("feels-like").innerHTML = "Feels Like: <b>" + data.currentFeels + "</b>";
+      document.getElementById("wind-speed").innerHTML = "Average Wind Chill: <b>" + data.windSpeed + "</b>";
 
     }).catch( (err) => {
       console.log(err.message);
@@ -182,7 +182,7 @@
   function setBackground(){
     let d = new Date();
     // let h = (d.getHours()<10?'0':'') + d.getHours();
-    let h = 7;
+    let h = 8;
     // let m = (d.getMinutes()<10?'0':'') + d.getMinutes();
 
     const landing = document.getElementById('main-page');
@@ -191,7 +191,7 @@
       landing.style.backgroundRepeat = "no-repeat";
       landing.style.backgroundPosition = "0 0";
       landing.style.backgroundSize = "cover";
-      landing.style.opacity = "0.8";
+      landing.style.opacity = "0.9";
     }
     else if (h >= 9 && h < 17) { //day
       landing.style.backgroundImage = "url('/img/day.jpg')";

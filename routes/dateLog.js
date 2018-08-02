@@ -74,12 +74,12 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 
       let weather = new Weather({
         date: todayDate,
-        highTemp: JSON.stringify(json_2.daily.data[0].temperatureMax) + "°F",
-        lowTemp: JSON.stringify(json_2.daily.data[0].temperatureMin) + "°F",
-        avgwindchill: JSON.stringify(json_2.daily.data[0].windSpeed) + "m/s",
-        highfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMax) + "°F",
-        lowfeels: JSON.stringify(json_2.daily.data[0].apparentTemperatureMin) + "°F",
-        avetemp: JSON.stringify(json_2.currently.apparentTemperature)
+        highTemp: Math.round(JSON.stringify(json_2.daily.data[0].temperatureMax)) + "°F",
+        lowTemp: Math.round(JSON.stringify(json_2.daily.data[0].temperatureMin)) + "°F",
+        avgwindchill: Math.round(JSON.stringify(json_2.daily.data[0].windSpeed)) + "m/s",
+        highfeels: Math.round(JSON.stringify(json_2.daily.data[0].apparentTemperatureMax)) + "°F",
+        lowfeels: Math.round(JSON.stringify(json_2.daily.data[0].apparentTemperatureMin)) + "°F",
+        avetemp: Math.round(JSON.stringify(json_2.currently.apparentTemperature))
       });
 
       weather.user = req.session.userId;
@@ -134,8 +134,8 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
       request(api, function (error, response, body){
         const json = JSON.parse(body);
         const currentTemp = Number(JSON.stringify(json.currently.temperature));
-        const lowCurrTemp = currentTemp - 10;
-        const highCurrTemp = currentTemp + 10;
+        const lowCurrTemp = Math.round(currentTemp - 10);
+        const highCurrTemp = Math.round(currentTemp + 10);
 
         // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
         Weather.find({user: currentUserId}, function(err, weathers){
@@ -189,8 +189,8 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
           console.log("Can't find weather from user's input today");
         } else {
           let todayTemp = Number(weather[0].avetemp); // current temp
-          const lowTodayTemp = todayTemp - 10;
-          const highTodayTemp = todayTemp + 10;
+          const lowTodayTemp = Math.round(todayTemp - 10);
+          const highTodayTemp = Math.round(todayTemp + 10);
 
           // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
           Weather.find({user: currentUserId}, function(err, weathers){

@@ -69,9 +69,9 @@ router.get('/api/:lon/:lat', (req, res) => {
 
   request(api, function (error, response, body){
     const json = JSON.parse(body);
-    const currentTemp = JSON.stringify(json.currently.temperature) + "°F";
-    const currentFeels = JSON.stringify(json.currently.apparentTemperature) + "°F";
-    const windSpeed = JSON.stringify(json.currently.windSpeed) + "°F";
+    const currentTemp = Math.round(JSON.stringify(json.currently.temperature)) + "°F";
+    const currentFeels = Math.round(JSON.stringify(json.currently.apparentTemperature)) + "°F";
+    const windSpeed = Math.round(JSON.stringify(json.currently.windSpeed)) + "m/s";
 
     return res.json({ currentTemp: currentTemp, currentFeels: currentFeels, windSpeed });
   });
