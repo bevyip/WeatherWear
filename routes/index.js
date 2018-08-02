@@ -46,7 +46,7 @@ router.get('/', (req,res,next) => {
 })
 
 // main landing page AFTER SIGN IN
-router.get('/main', (req, res, next) => {
+router.get('/main',  auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
 

@@ -91,7 +91,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
         dateLog.save(function(err, dateLog) {
           if(err) { console.error(err) };
         // }).then(() => {
-          return res.redirect('/');
+          return res.redirect('/main');
         });
 
         // if(err) { console.error(err) };

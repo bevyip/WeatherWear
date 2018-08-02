@@ -1,4 +1,6 @@
-<header>
+
+  <div id="main-page"></div>
+
   {{# if currentUserId}}
   <nav class="navbar">
     <div class="navbar-brand">
@@ -12,31 +14,33 @@
   </nav>
 
   <div class="section landing-content">
-    <!-- <div class="section landing-today-weather"> -->
+    <div class="section landing-today-weather">
       <!-- show only user input IF THERE IS A USER INPUT -->
       {{# if weather}}
       {{#each weather as |w|}}
       <div class="today-weather">
         <div class="weather-heading">
-          <h4>{{w.avetemp}}°F</h4>
+          <h6>{{w.location}}</h6>
         </div>
 
-        <div class="weather-sub-heading">
-          <h5>{{w.location}}</h5>
-          <h6>{{w.date}}</h6>
+        <div class="weather-sub-heading text-center">
+          <h2>{{w.avetemp}}°F</h2>
+          <p>{{w.date}}</p>
         </div>
 
         <div class="weather-temp">
-          <p>{{w.highTemp}}</p>
+          <p><b>{{w.highTemp}}</b></p>
           <p>{{w.lowTemp}}</p>
         </div>
 
         <div class="weather-wind">
+          <p>Average Wind Chill: </p>
           <p>{{w.avgwindchill}}</p>
         </div>
 
         <div class="weather-feels">
-          <p>{{w.highfeels}}</p>
+          <p>Feels like: </p>
+          <p><b>{{w.highfeels}}</b></p>
           <p>{{w.lowfeels}}</p>
         </div>
       </div>
@@ -44,14 +48,13 @@
 
       <!-- show current location details at the start & if there is no user input -->
       {{else}}
-      <body onload="geoFindMe()">
         <div class="current-loc-weather">
           <div class="text-center" id="current-temp"></div>
           <div class="text-center" id="location"></div>
           <div class="text-center" id="feels-like"></div>
           <div class="text-center" id="wind-speed"></div>
         </div>
-      <!-- </div> -->
+      </div>
 
       <div class="section landing-buttons">
         <div onclick="create()">
@@ -83,7 +86,6 @@
     </div>
     {{/if}}
 
-  </header>
 
   <script>
   // frontend call to get current location
@@ -176,4 +178,45 @@
   function create(){
     window.location.href = 'http://localhost:3000/dateLog/new';
   }
+
+  function setBackground(){
+    let d = new Date();
+    // let h = (d.getHours()<10?'0':'') + d.getHours();
+    let h = 7;
+    // let m = (d.getMinutes()<10?'0':'') + d.getMinutes();
+
+    const landing = document.getElementById('main-page');
+    if (h >= 6 && h < 9) { //sunrise
+      landing.style.backgroundImage = "url('/img/sunrise.jpg')";
+      landing.style.backgroundRepeat = "no-repeat";
+      landing.style.backgroundPosition = "0 0";
+      landing.style.backgroundSize = "cover";
+      landing.style.opacity = "0.8";
+    }
+    else if (h >= 9 && h < 17) { //day
+      landing.style.backgroundImage = "url('/img/day.jpg')";
+      landing.style.backgroundRepeat = "no-repeat";
+      landing.style.backgroundPosition = "0 0";
+      landing.style.backgroundSize = "cover";
+      landing.style.opacity = "0.7";
+    }
+    else if (h >= 17 && h < 21) { //sunset
+      landing.style.backgroundImage = "url('/img/sunset.jpg')";
+      landing.style.backgroundRepeat = "no-repeat";
+      landing.style.backgroundPosition = "0 0";
+      landing.style.backgroundSize = "cover";
+      landing.style.opacity = "0.9";
+    }
+    else { //night
+      landing.style.backgroundImage = "url('/img/night.jpg')";
+      landing.style.backgroundRepeat = "no-repeat";
+      landing.style.backgroundPosition = "0 0";
+      landing.style.backgroundSize = "cover";
+      landing.style.opacity = "0.9";
+    }
+  }
+
+  setBackground();
+  geoFindMe();
+
 </script>
