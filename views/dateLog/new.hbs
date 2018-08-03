@@ -4,54 +4,63 @@
   </div>
 
   <div class="navbar-text">
-      <a class="navbar-link" href="/dateLog/all">My Logs | </a>
-      <a class="navbar-link" href="/logout">Sign Out</a>
+    <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+    <a class="navbar-link" href="/logout">Sign Out</a>
   </div>
 </nav>
 
-<form action="/dateLog" method="post">
+<form action="/dateLog" method="post" class="form-group">
 
   <div class="new-input-content">
 
     <div class="new-input-stuff">
-      <ol>
-        <h3>Date today:</h3>
-        <p id="date"></p>
+      <ol style="display: flex; margin: 0 50px 0 0;">
 
-        <div class="location-input">
-          <h3>Location: </h3>
-          <input class="form-control" type="text" name="location" id="autocomplete"/>
+        <div class="left-input">
+          <h3 id="date"></h3>
+          <h3 id="year"></h3>
+
+          <div class="location-input text-center">
+            <h2 style="font-family: 'Muli'; font-size: 30px;">Location: </h2>
+            <input class="form-control" required minlength="1" maxlength="50" type="text" name="location" id="autocomplete"/>
+          </div>
         </div>
 
-        <h3><li>What did I wear today?</li></h3>
-        <label for="input-top-title">Top:</label>
-        <input type="text" name="top" class="form-control input-top" placeholder="e.g: Off-shoulder top" required minlength="1" maxlength="44" autocomplete="off">
+        <div class="input-field-box">
 
-        <label for="input-bottom-title">Bottom:</label>
-        <input type="text" name="bottom" class="form-control input-bottom" placeholder="e.g: Ripped denim jeans" required minlength="1" maxlength="44" autocomplete="off">
+        <div class="middle-input">
+          <h3><li>What did I wear today?</li></h3>
+          <label for="input-top-title">*Top:</label>
+          <input type="text" name="top" class="form-control input-top" placeholder="e.g: Blue Shirt" required minlength="1" maxlength="50" autocomplete="off">
 
-        <label for="input-outerwear-title">Outerwear:</label>
-        <input type="text" name="outerwear" class="form-control input-outerwear" placeholder="e.g: Leather jacket" required minlength="1" maxlength="44" autocomplete="off">
+          <label for="input-bottom-title">*Bottom:</label>
+          <input type="text" name="bottom" class="form-control input-bottom" placeholder="e.g: Black Jeans" required minlength="1" maxlength="50" autocomplete="off">
 
-        <label for="input-others-title">Others:</label>
-        <input type="text" name="others" class="form-control input-others" placeholder="e.g: Red beanie and blue scarf" minlength="1" maxlength="44" autocomplete="off">
+          <label for="input-outerwear-title">*Outerwear:</label>
+          <input type="text" name="outerwear" class="form-control input-outerwear" placeholder="e.g: Denim Jacket" required minlength="1" maxlength="50" autocomplete="off">
 
-        <h3><li>How did I feel today?</li></h3>
-        <select id="userFeels" name="userFeels">
-          <option value="cold">Cold</option>
-          <option value="moderately cold">Moderately Cold</option>
-          <option value="perfect">Perfect</option>
-          <option value="moderately hot">Moderately hot</option>
-          <option value="hot">Hot</option>
-        </select>
-      </ol>
+          <label for="input-others-title">Others:</label>
+          <input type="text" name="others" class="form-control input-others" placeholder="e.g: Red beanie" autocomplete="off">
+          </div>
+
+          <div class="right-input">
+          <h3><li>How did I feel today?</li></h3>
+          <select id="userFeels" name="userFeels" class="dropdown-input">
+            <option value="cold">Cold</option>
+            <option value="moderately cold">Moderately Cold</option>
+            <option value="perfect">Perfect</option>
+            <option value="moderately hot">Moderately hot</option>
+            <option value="hot">Hot</option>
+          </select>
+
+      <div class="text-center submit-button create-button">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+      </div>
+      </div>
     </div>
-
-    <div class="text-center">
-      <button type="submit" class="btn submit-button btn-primary">Create</button>
-    </div>
+    </ol>
   </div>
-</div>
 
 </form>
 
@@ -86,7 +95,8 @@ function setToday(){
 
   var newMonth = month[m];
 
-  document.getElementById("date").innerHTML = newMonth + " " + d + " " + y;
+  document.getElementById("date").innerHTML = newMonth + " " + d;
+  document.getElementById("year").innerHTML = y;
 }
 
 setToday();

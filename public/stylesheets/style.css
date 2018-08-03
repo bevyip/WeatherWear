@@ -185,7 +185,7 @@
   color: #FFFFFF !important;
 }
 
-.form-group ::placeholder {
+.form-group ::placeholder, select {
   font-family: 'Josefin Sans';
   font-size: 18px;
 }
@@ -247,7 +247,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 20px 0 10px;
 
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
@@ -261,8 +261,13 @@
   flex-direction: row;
 }
 
-.weather-temp p, .weather-feels p, .weather-wind p {
-  margin: 0 10px;
+.weather-temp p {
+  margin: 0 10px 10px 0;
+  font-family: Lato;
+}
+
+.weather-feels p, .weather-wind p {
+  margin: 0 5px;
   font-family: Lato;
 }
 
@@ -273,6 +278,7 @@
 
 .weather-heading h6, #location {
   font-family: Lato;
+  margin-bottom: -2px;
 }
 
 .weather-sub-heading h2, #current-temp {
@@ -283,20 +289,88 @@
   letter-spacing: 1px;
 }
 
-.navbar-brand a {
-  font-family: 'Josefin Sans';
-  font-size: 25px;
-  /* color: #FFDD5C !important; */
+.section.main-buttons, .section.landing-compare {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
 }
 
-/* change */
-.navbar a, .navbar a:hover {
+.section.main-buttons h2, .section.landing-compare h2 {
+  font-size: 20px;
+  text-align: center;
+  font-family: Lato;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  outline: none;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.section.landing-compare {
+  cursor: pointer;
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  transition: color 0.3s ease-out,
+                background-color 0.3s ease-out,
+                border-color 0.3s ease-out;
+}
+
+.section.landing-create {
+   cursor: pointer;
+   margin: 0 15px;
+   display: inline-block;
+   width: 200px;
+   padding: 8px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   background-color: #F8F8F8;
+   border: 2px solid #fff;
+   color: #080808;
+   transition: color 0.3s ease-out,
+               background-color 0.3s ease-out,
+               border-color 0.3s ease-out;
+ }
+
+.section.landing-compare:hover, .section.landing-compare:active {
+  text-decoration: none;
+  background-color: #F8F8F8;
+  border-color: 2px solid #fff;
+  color: #080808;
+  transition: color 0.3s ease-in,
+              background-color 0.3s ease-in,
+              border-color 0.3s ease-in;
+}
+
+.section.landing-create:hover, .section.landing-create:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
+  transition: color 0.3s ease-in,
+                background-color 0.3s ease-in
+}
+
+.navbar-brand a, .navbar-brand a:hover {
+  font-family: 'Josefin Sans';
+  font-size: 25px;
+  color: #F6E481 !important;
+  text-decoration: none;
+}
+
+.navbar-text a, .navbar-text a:hover {
   color: white !important;
   text-decoration: none;
 }
-/* change */
+
 .navbar {
-  background-color: black;
+  background-color: #202020;
 }
 
 .navbar-text {
@@ -306,42 +380,57 @@
   letter-spacing: 1px;
 }
 
-h3 {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.section.landing-buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.section.landing-compare, .section.landing-create {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 20px;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
 .new-input-content {
+  background-color: #FFFBEE;
+  height: 500px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
 }
 
 .new-input-stuff {
-  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.inputs.summary h3 {
-  counter-reset: my-sec-counter;
+.left-input, .right-input, .middle-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.middle-input {
+  margin: 0 -25px 0 10px;
+}
+
+.middle-input li, .right-input li {
+  font-family: 'Muli';
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.right-input label, .middle-input label {
+  margin: 5px 0;
+}
+
+.middle-input input {
+  margin-bottom: 10px;
+}
+
+.create-button {
+  margin: 20px;
+}
+
+#date, #year {
+  font-family: Lato;
+  text-align: center;
+  font-size: 70px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 select {
@@ -349,7 +438,23 @@ select {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background-color: #f1f1f1;
+  background-color: white;
+  border: 1px solid #ced4da;
+}
+
+.dropdown-input {
+  margin-top: 10px;
+}
+
+.input-field-box {
+  display: flex;
+  flex-direction: row;
+
+  background-color: #fff;
+  background-color: rgba(255,231,155, 0.8);
+  z-index: 2;
+  padding: 30px 20px;
+  border-radius: 20px;
 }
 
 button #trash {

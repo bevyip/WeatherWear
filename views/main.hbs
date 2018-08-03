@@ -24,8 +24,8 @@
         </div>
 
         <div class="weather-sub-heading text-center">
+          <!-- <p style="margin-top: 10px;">{{w.date}}</p> -->
           <h2>{{w.avetemp}}°F</h2>
-          <p>{{w.date}}</p>
         </div>
 
         <div class="weather-temp">
@@ -38,7 +38,7 @@
           <p>{{w.avgwindchill}}</p>
         </div>
 
-        <div class="weather-feels">
+        <div class="weather-feels" style="margin-top: 2px;">
           <p>Feels like: </p>
           <p><b>{{w.highfeels}}</b></p>
           <p>{{w.lowfeels}}</p>
@@ -56,29 +56,18 @@
         </div>
       </div>
 
-      <div class="section landing-buttons">
+      <div class="section main-buttons">
         <div onclick="create()">
           <div class="section landing-create">
-            <h2>Create</h2>
-            <p>Haven't made a log for today? Create one now!</p>
+            <h2>CREATE</h2>
           </div>
         </div>
 
       {{/if}}
 
-      <!-- To create sample resources -->
-      <!-- <div class="section landing-buttons">
-        <div onclick="create()">
-          <div class="section landing-create">
-            <h2>Create</h2>
-            <p>Haven't made a log for today? Create one now!</p>
-          </div>
-        </div> -->
-
         <div onclick="geoFindMe_compare()">
           <div class="section landing-compare">
-            <h2>Compare</h2>
-            <p>Find days that have a similar temperature as today!</p>
+            <h2>COMPARE</h2>
           </div>
         </div>
 
@@ -181,8 +170,8 @@
 
   function setBackground(){
     let d = new Date();
-    // let h = (d.getHours()<10?'0':'') + d.getHours();
-    let h = 8;
+    let h = (d.getHours()<10?'0':'') + d.getHours();
+    // let h = 22;
     // let m = (d.getMinutes()<10?'0':'') + d.getMinutes();
 
     const landing = document.getElementById('main-page');
