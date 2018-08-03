@@ -4,23 +4,38 @@
   </div>
 
   <div class="navbar-text">
-      <a class="navbar-link" href="/dateLog/all">My Logs | </a>
-      <a class="navbar-link" href="/logout">Sign Out</a>
+    <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+    <a class="navbar-link" href="/logout">Sign Out</a>
   </div>
 </nav>
 
-<div class="section inputs-body">
-  <h4>You selected dateLog created on: {{dateLog.date}}</h4>
-  <h5>You were at: {{dateLog.location}}</h5>
+<div class="section selected-body">
+  <div class="section selected-inputs">
+    <h4>{{dateLog.date}}</h4>
+    <h5>{{dateLog.location}}</h5>
+    <h2>{{weather.avetemp}}°F</h2>
 
-  <p>Top: {{dateLog.top}}</p>
-  <p>Bottom: {{dateLog.bottom}}</p>
-  <p>Outerwear: {{dateLog.outerwear}}</p>
-  <p>Others: {{dateLog.others}}</p>
-  <p>Top: {{dateLog.top}}</p>
-  <p>You felt: {{dateLog.userFeels}}</p>
-  <p>Average Wind Chill: {{{weather.avgwindchill}}}</p>
-  <p>High Feels Like: {{weather.highfeels}}</p>
-  <p>Low Feels Like: {{weather.lowfeels}}</p>
-  <p>Average temperature: {{weather.avetemp}}°F</p>
+    <div class="weather-wind">
+      <p>Average Wind Chill: </p>
+      <p>{{weather.avgwindchill}}</p>
+    </div>
+
+    <div class="weather-feels" style="margin-top: 2px;">
+      <p>Feels like: </p>
+      <p><b>{{weather.highfeels}}</b></p>
+      <p>{{weather.lowfeels}}</p>
+    </div>
+
+
+      <div class="section selected-details selected-outfit">
+        <h3><b>*Still needs styling*</b></h3>
+        <p>Top: {{dateLog.top}}</p>
+        <p>Bottom: {{dateLog.bottom}}</p>
+        <p>Outerwear: {{dateLog.outerwear}}</p>
+        <p>Others: {{dateLog.others}}</p>
+        <p>Top: {{dateLog.top}}</p>
+        <p>You felt: {{dateLog.userFeels}}</p>
+      </div>
+
   </div>
+</div>

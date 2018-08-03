@@ -457,7 +457,7 @@ select {
   border-radius: 20px;
 }
 
-.filtered-body, .inputs-body {
+.filtered-body, .inputs-body, .selected-body {
   background-color: #FFFBEE;
 }
 
@@ -504,19 +504,19 @@ select {
 
 .log-stuff h2 {
   font-family: Lato;
-  font-size: 50px;
-  margin: 15px 0;
+  font-size: 55px;
+  margin: 15px 0 5px;
   color: #FFFFFF;
 }
 
 .input-date {
-  margin: 20px 0;
+  margin: 20px 0 10px;
   text-transform: uppercase;
   font-family: Lato;
   font-size: 28px;
   font-weight: bold;
   letter-spacing: 1px;
-  color: #F5F5F5;
+  color: white;
 }
 
 .input-location {
@@ -545,4 +545,47 @@ select {
 #trash:focus #trash:active {
    outline: none !important;
    box-shadow: none;
+}
+
+.selected-body {
+  font-family: Lato;
+}
+
+.selected-body h4 {
+  font-size: 50px;
+  font-weight: bolder;
+  color: #B44746;
+}
+
+.selected-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.selected-details {
+  margin: 10px;
+  background-color: #fff;
+  background-color: rgba(255,231,155, 0.8);
+  z-index: 2;
+  padding: 20px 200px;
+  border-radius: 20px;
+}
+
+.selected-inputs h2 {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 50px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+}
+
+.selected-outfit {
+  margin: 10px 0;
+}
+
+.selected-outfit p {
+  margin: auto;
+  font-size: 18px;
 }
