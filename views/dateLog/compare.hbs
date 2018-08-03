@@ -4,27 +4,27 @@
   </div>
 
   <div class="navbar-text">
-      <a class="navbar-link" href="/dateLog/all">My Logs | </a>
-      <a class="navbar-link" href="/logout">Sign Out</a>
+    <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+    <a class="navbar-link" href="/logout">Sign Out</a>
   </div>
 </nav>
 
-<div class="filtered-body">
-  <ol>
-    {{#each results as |result|}}
-    <li><div class="content inputs summary">
-      <h3>This is a filtered log.</h3>
-      <div class="section log-stuff">
-        <p class="logstuff log-date">Date: {{result.dateLogs.date}}</p>
-        <p class="logstuff log-date">Location: {{result.dateLogs.location}}</p>
-        <p class="logstuff log-avetemp">Average Temperature: {{result.weathers.avetemp}}°F</p>
-        <a class="logstuff log-link" href="/dateLog/show/{{result.dateLogs._id}}">Read More</a>
-      </div>
-    </div>
-  </li>
-  {{/each}}
-</ol>
+<div class="filtered-body container-fluid">
+  <div class="row">
+    <ol>
+      {{#each results as |result|}}
+      <li>
+        <div class="section log-stuff text-center">
+          <h2 class="logstuff log-avetemp">{{result.weathers.avetemp}}°F</h2>
+          <p class="logstuff log-date" style="letter-spacing: 1px; color: black;">{{result.dateLogs.date}}</p>
+          <p class="logstuff log-date" style="margin-top: -10px;">{{result.dateLogs.location}}</p>
+          <a class="logstuff log-link" href="/dateLog/show/{{result.dateLogs._id}}">READ MORE</a>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
 
-<h3>{{message}}</h3>
+  <h3>{{message}}</h3>
 
 </div>

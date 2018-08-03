@@ -457,10 +457,80 @@ select {
   border-radius: 20px;
 }
 
-button #trash {
-  color: #FFCC00 !important;
-  background-color:inherit !important;
-  border-color: #680707 !important;
+.filtered-body, .inputs-body {
+  background-color: #FFFBEE;
+}
+
+.filtered-body ol, .inputs-body ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.filtered-body li, .inputs-body li {
+  width: 300px;
+  height: 250px;
+  margin: 20px;
+  padding: 20px;
+
+  display: flex;
+  background-color: #B44746;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-stuff a, .log-stuff a:visited,
+.inputstuff a, .inputstuff a:visited {
+  margin-bottom: 30px;
+  color: #F6E481 !important;
+  font-family: Lato;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.log-stuff p {
+  color: #FFFFFF;
+  font-family: Lato;
+}
+
+.log-stuff a:hover, .inputstuff a:hover {
+  text-decoration: none;
+  color: #FFFFFF !important;
+}
+
+.log-stuff h2 {
+  font-family: Lato;
+  font-size: 50px;
+  margin: 15px 0;
+  color: #FFFFFF;
+}
+
+.input-date {
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-family: Lato;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #F5F5F5;
+}
+
+.input-location {
+  font-family: Lato;
+}
+
+.trash-button {
+  display:flex;
+  justify-content: flex-end;
+}
+
+#trash {
+  color: black !important;
+  background-color: inherit !important;
   border: none;
   margin: auto;
   font-size: 20px;
@@ -468,9 +538,8 @@ button #trash {
   cursor: pointer;
 }
 
-button #trash:hover {
-  color: white !important;
-
+#trash:hover {
+  color: #F6E481 !important;
 }
 
 #trash:focus #trash:active {

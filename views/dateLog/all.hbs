@@ -4,30 +4,27 @@
   </div>
 
   <div class="navbar-text">
-      <a class="navbar-link" href="/dateLog/all">My Logs | </a>
-      <a class="navbar-link" href="/logout">Sign Out</a>
+    <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+    <a class="navbar-link" href="/logout">Sign Out</a>
   </div>
 </nav>
 
 <div class="inputs-body">
+  <div class="row">
     <ol>
-    {{#each dateLogs as |input|}}
-    <li><div class="section content inputs summary">
-      <!-- <h3 class="input-name">{{input.date}}</h3> -->
-        <h3>This is an input</h3>
-        <div class="input-stuff">
-          <p class="inputstuff input-date">Date: {{input.date}}</p>
-          <p class="inputstuff input-date">Location: {{input.location}}</p>
+      {{#each dateLogs as |input|}}
+      <li>
+        <div class="inputstuff text-center">
+          <p class="inputstuff input-date">{{input.date}}</p>
+          <p class="inputstuff input-location">{{input.location}}</p>
           <a class="inputstuff input-link" href="/dateLog/show/{{input._id}}">Read More</a>
+
+          <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
+            <button class="btn trash-button" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
+          </form></p>
         </div>
-
-        <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
-        <button class="btn" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
-      </form></p>
-
-    </div>
-  </li>
-    {{/each}}
+      </li>
+      {{/each}}
     </ol>
-
   </div>
+</div>
