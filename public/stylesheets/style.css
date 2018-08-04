@@ -261,6 +261,43 @@
   flex-direction: row;
 }
 
+.temp-all {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.temp-words {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0 0 0 -80px;
+}
+
+.temp-words p {
+  margin: 2px 0;
+}
+
+.temp-info p {
+  margin: 2px 5px;
+}
+
+.temp-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 0 20px;
+}
+
+.temp-feels {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .weather-temp p {
   margin: 0 10px 10px 0;
   font-family: Lato;
@@ -461,12 +498,15 @@ select {
   background-color: #FFFBEE;
 }
 
-.filtered-body ol, .inputs-body ol {
+.filtered-body ol, .inputs-body ol, .filtered-body .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   list-style-type: none;
+}
+
+.filtered-body ol, .inputs-body ol {
   margin-top: 20px;
 }
 
