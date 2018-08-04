@@ -512,7 +512,7 @@ select {
 
 .filtered-body li, .inputs-body li {
   width: 300px;
-  height: 250px;
+  height: 270px;
   margin: 20px;
   padding: 20px;
 
@@ -535,6 +535,7 @@ select {
 .log-stuff p {
   color: #FFFFFF;
   font-family: Lato;
+  overflow: hidden;
 }
 
 .log-stuff a:hover, .inputstuff a:hover {
@@ -547,6 +548,19 @@ select {
   font-size: 55px;
   margin: 15px 0 5px;
   color: #FFFFFF;
+}
+
+.log-userfeels {
+  background-color: black;
+  padding: 2px 2em;
+  margin-top: -5px 0;
+}
+
+.input-userfeels {
+  background-color: black;
+  padding: 2px 0;
+  margin-top: -5px 0;
+  color: white;
 }
 
 .input-date {
