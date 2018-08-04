@@ -32,27 +32,30 @@
       </div>
     </div>
 
-    <!-- <div class="weather-wind">
-    <p>Average Wind Chill: </p>
-    <p>{{weather.avgwindchill}}</p>
+    <div class="section selected-outfits">
+    <div class="section selected-details">
+      <div class="section clothes-label">
+        <p>Top: </p>
+        <p>Bottom: </p>
+        <p>Outerwear: </p>
+        {{#if dateLog.others}}
+        <p>Others: </p>
+        {{/if}}
+      </div>
+      <div class="section clothes-content">
+        <p>{{dateLog.top}}</p>
+        <p>{{dateLog.bottom}}</p>
+        <p>{{dateLog.outerwear}}</p>
+        {{#if dateLog.others}}
+        <p>{{dateLog.others}}</p>
+        {{/if}}
+      </div>
+    </div>
+    <div class="section selected-feels-only">
+    <h5>You felt </h5>
+    <h5 class="major-feels">{{dateLog.userFeels}}</h5>
+  </div>
   </div>
 
-  <div class="weather-feels" style="margin-top: 2px;">
-  <p>Feels like: </p>
-  <p><b>{{weather.highfeels}}</b></p>
-  <p>{{weather.lowfeels}}</p>
-</div> -->
-
-
-<div class="section selected-details selected-outfit">
-  <h3><b>*Still needs styling*</b></h3>
-  <p>Top: {{dateLog.top}}</p>
-  <p>Bottom: {{dateLog.bottom}}</p>
-  <p>Outerwear: {{dateLog.outerwear}}</p>
-  <p>Others: {{dateLog.others}}</p>
-  <p>Top: {{dateLog.top}}</p>
-  <p>You felt: {{dateLog.userFeels}}</p>
-</div>
-
-</div>
+  </div>
 </div>
