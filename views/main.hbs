@@ -8,7 +8,7 @@
     </div>
 
     <div class="navbar-text">
-        <a class="navbar-link" href="/dateLog/all">My Logs | </a>
+        <a class="navbar-link" href="/dateLog/all">My History | </a>
         <a class="navbar-link" href="/logout">Sign Out</a>
     </div>
   </nav>
@@ -117,7 +117,7 @@
 
   //frontend call to get current location's weather deets
   function weatherNow(latitude, longitude){
-    fetch(`http://localhost:3000/api/${longitude}/${latitude}`).then( (res) => {
+    fetch(`/api/${longitude}/${latitude}`).then( (res) => {
       return res.json();
     }).then( (data) => {
       document.getElementById("current-temp").innerHTML = data.currentTemp;
