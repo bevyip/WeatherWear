@@ -142,7 +142,11 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
           if (err || weathers.length === 0){
             // Render compare page with a message that says no similar input found
             // can be done with front end if statement!
-            const message = "No user inputs with similar temperature range."
+            const message = {
+              first: "Hey!",
+              second: "There aren't any days of similar weather forecast like today's."
+            };
+
             res.render('dateLog/compare', { currentUserId: currentUserId, message: message });
           }
 

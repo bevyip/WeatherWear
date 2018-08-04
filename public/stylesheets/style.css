@@ -678,3 +678,22 @@ select {
   font-size: 30px;
   margin-bottom: 14px;
 }
+
+.no-user-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Lato;
+  height: 487px;
+}
+
+.no-user-input h2{
+  font-weight: bold;
+  color: #B44746;
+  font-size: 50px;
+}
+
+.no-user-input h3 {
+
+}
