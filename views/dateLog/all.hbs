@@ -35,3 +35,28 @@
   <link rel='stylesheet' href='/stylesheets/cal.css' /> -->
 
 </div>
+
+<script>
+function eventGet(){
+  const loc = document.querySelectorAll('.input-location');
+
+  for(let i = 0; i < loc.length; i++){
+    lengthCheck(loc[i])
+  }
+
+};
+
+function lengthCheck(obj){
+  const $numWords = obj.textContent.length;
+  // const $numWords = 14;
+
+  if (($numWords >= 1) && ($numWords < 70)) {
+    obj.style.fontSize = "17px"
+  }
+  else {
+    obj.style.fontSize = "15px"
+  }
+}
+
+eventGet();
+</script>
