@@ -50,15 +50,18 @@ router.get('/main',  auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
   const currentDate = setToday();
 
-  Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
-    if(err || weather.length === 0) {
-      // User's Input cannot be found
-      // Front-end show weather for current location, not user location
-      res.render('main', { currentUserId: currentUserId });
-    } else {
-      res.render('main', { currentUserId: currentUserId, weather: weather});
-    }
-  });
+  User.find({ _id: currentUserId}, function(err, user) {
+    const userName = user[0].firstname;
+    Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
+      if(err || weather.length === 0) {
+        // User's Input cannot be found
+        // Front-end show weather for current location, not user location
+        res.render('main', { currentUserId: currentUserId, userName: userName });
+      } else {
+        res.render('main', { currentUserId: currentUserId, userName: userName, weather: weather});
+      }
+    });
+  })
 });
 
 //backend function for current location weather deets

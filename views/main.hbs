@@ -14,6 +14,9 @@
   </nav>
 
   <div class="section landing-content">
+    <div class="section landing-welcome">
+      <h1 id="landing-name">Hello, {{userName}}</h1>
+    </div>
     <div class="section landing-today-weather">
       <!-- show only user input IF THERE IS A USER INPUT -->
       {{# if weather}}
@@ -170,17 +173,19 @@
 
   function setBackground(){
     let d = new Date();
-    let h = (d.getHours()<10?'0':'') + d.getHours();
-    // let h = 33;
+    // let h = (d.getHours()<10?'0':'') + d.getHours();
+    let h = 10;
     // let m = (d.getMinutes()<10?'0':'') + d.getMinutes();
 
     const landing = document.getElementById('main-page');
+    const name = document.getElementById('landing-name');
     if (h >= 6 && h < 9) { //sunrise
       landing.style.backgroundImage = "url('/img/sunrise.jpg')";
       landing.style.backgroundRepeat = "no-repeat";
       landing.style.backgroundPosition = "0 0";
       landing.style.backgroundSize = "cover";
       landing.style.opacity = "0.9";
+      name.style.color = "#383838";
     }
     else if (h >= 9 && h < 17) { //day
       landing.style.backgroundImage = "url('/img/day.jpg')";
@@ -195,6 +200,7 @@
       landing.style.backgroundPosition = "0 0";
       landing.style.backgroundSize = "cover";
       landing.style.opacity = "0.9";
+      name.style.color = "#383838";
     }
     else { //night
       landing.style.backgroundImage = "url('/img/night.jpg')";
@@ -202,6 +208,7 @@
       landing.style.backgroundPosition = "0 0";
       landing.style.backgroundSize = "cover";
       landing.style.opacity = "0.9";
+      name.style.color = "#F5F5F5";
     }
   }
 
