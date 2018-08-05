@@ -106,7 +106,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
 router.get('/all', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
 
-  DateLog.find({user: currentUserId}).sort({date:1}).exec(function(err, dateLogs){
+  DateLog.find({user: currentUserId}).sort({$natural:-1}).exec(function(err, dateLogs){
     if(err) {
       console.error(err);
     } else {
