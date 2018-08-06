@@ -11,6 +11,7 @@
 
 <div class="filtered-body container-fluid">
   <div class="row">
+    {{#if results}}
     <ol>
       {{#each results as |result|}}
       <li>
@@ -26,11 +27,13 @@
     </ol>
   </div>
 
+  {{else}}
   <div class="no-user-input">
     <h2>{{message.first}}</h2>
     <h3>{{message.second}}</h3>
   </div>
 
+  {{/if}}
 </div>
 
 <script>

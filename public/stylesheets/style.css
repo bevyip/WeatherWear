@@ -63,6 +63,7 @@ if it's not present, don't show loader */
 
 .landing-welcome h1 {
   font-family: 'Josefin Sans';
+  /* font-family: 'Google Sans',arial,sans-serif; */
   font-size: 80px;
   color: white;
   text-transform: capitalize;
@@ -349,11 +350,12 @@ if it's not present, don't show loader */
   letter-spacing: 1px;
 }
 
-.section.main-buttons, .section.landing-compare {
+.section.main-buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 30px;
+  padding: 15px 0;
+  margin: 0 20px;
 }
 
 .section.main-buttons h2, .section.landing-compare h2 {
@@ -372,6 +374,7 @@ if it's not present, don't show loader */
   display: inline-block;
   width: 200px;
   padding: 8px;
+  margin: 0 20px;
 
   color: #fff;
   background-color: transparent;
@@ -521,7 +524,7 @@ select {
   background-color: #FFFBEE;
 }
 
-.filtered-body ol, .inputs-body ol, .filtered-body .row {
+.filtered-body ol, .inputs-body ol {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -530,7 +533,9 @@ select {
 }
 
 .filtered-body ol, .inputs-body ol {
-  margin-top: 20px;
+  margin: 0px;
+  padding-top: 20px;
+  padding-left: 0px;
 }
 
 .filtered-body li, .inputs-body li {
@@ -719,7 +724,8 @@ select {
 .no-user-input {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  margin: 2px auto;
   align-items: center;
   font-family: Lato;
   height: 487px;
@@ -731,6 +737,33 @@ select {
   font-size: 50px;
 }
 
-.no-user-input h3 {
+.all-create {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  width: 150px;
+  padding: 8px 0;
+  color: #fff;
+  background-color: #202020;
+  border: 2px solid #202020;
+  border-radius: 3px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              border-color 0.2s ease-out;
+}
 
+.all-create:hover,
+.all-create:active {
+  background-color: #B44746;
+  border-color: #B44746;
+  transition: background-color 0.2s ease-in,
+              border-color 0.2s ease-in;
+}
+
+.all-create h4 {
+  font-family: Lato;
+  margin: auto;
+  letter-spacing: 2px;
 }

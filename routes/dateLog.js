@@ -107,8 +107,15 @@ router.get('/all', auth.requireLogin, (req, res, next) => {
   const currentUserId = req.session.userId;
 
   DateLog.find({user: currentUserId}).sort({$natural:-1}).exec(function(err, dateLogs){
-    if(err) {
+    if(err || dateLogs.length === 0) {
       console.error(err);
+
+      const message = {
+        first: "Hey!",
+        second: "You haven't created any entries yet."
+      };
+
+      res.render('dateLog/all', { currentUserId: currentUserId, message: message });
     } else {
       res.render('dateLog/all', { currentUserId: currentUserId, dateLogs: dateLogs });
     }
@@ -138,7 +145,7 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
         const highCurrTemp = Math.round(currentTemp + 10);
 
         // Filter Weathers based on answer, get weather-Id, match with specific DateLogs created
-        Weather.find({user: currentUserId}, function(err, weathers){
+        Weather.find({user: currentUserId}).sort({$natural:-1}).exec(function(err, weathers){
           if (err || weathers.length === 0){
             // Render compare page with a message that says no similar input found
             // can be done with front end if statement!
@@ -188,7 +195,7 @@ router.get('/compare/:lon/:lat', auth.requireLogin, (req, res, next) => {
       // display inputs based on user-set temp
 
       // use today's date and search through Weathers to find current temp (answer)
-      Weather.find({user: currentUserId, date: currentDate}, function(err, weather){
+      Weather.find({user: currentUserId, date: currentDate}).sort({$natural:-1}).exec(function(err, weather){
         if (err || weather.length === 0){
           console.log("Can't find weather from user's input today");
         } else {

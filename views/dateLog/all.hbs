@@ -10,7 +10,7 @@
 </nav>
 
 <div class="inputs-body">
-  <div class="row">
+    {{#if dateLogs}}
     <ol>
       {{#each dateLogs as |input|}}
       <li>
@@ -27,8 +27,20 @@
       </li>
       {{/each}}
     </ol>
+
+  {{else}}
+  <div class="no-user-input">
+    <h2>{{message.first}}</h2>
+    <h3>{{message.second}}</h3>
+
+    <div onclick="create()">
+      <div class="all-create">
+        <h4>CREATE</h4>
+      </div>
+    </div>
   </div>
 
+  {{/if}}
 
   <!-- <div id="calendarThis"> </div>
   <script src="/javascripts/calendar.js"></script>
@@ -37,6 +49,12 @@
 </div>
 
 <script>
+// function call to check that there is no input from today before allowing user to create
+function create(){
+  window.location.href = 'http://localhost:3000/dateLog/new';
+}
+
+
 function eventGet(){
   const loc = document.querySelectorAll('.input-location');
 
