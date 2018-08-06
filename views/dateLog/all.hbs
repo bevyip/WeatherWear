@@ -51,7 +51,12 @@
 <script>
 // function call to check that there is no input from today before allowing user to create
 function create(){
-  window.location.href = 'http://localhost:3000/dateLog/new';
+  let parser = document.createElement('a');
+  parser.href = window.location.href;
+  let http = parser.protocol;
+  let hostname = parser.host;
+  window.location.href = http+"//"+hostname+'/dateLog/new';
+  // window.location.href = 'http://localhost:3000/dateLog/new';
 }
 
 

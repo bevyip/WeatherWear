@@ -717,8 +717,8 @@ select {
 .major-feels {
   color: #B44746;
   font-weight: bold;
-  font-size: 30px;
-  margin-bottom: 14px;
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
 .no-user-input {
