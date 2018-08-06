@@ -173,7 +173,11 @@
 
   // function call to check that there is no input from today before allowing user to create
   function create(){
-    window.location.href += '/dateLog/new';
+    let parser = document.createElement('a');
+    parser.href = window.location.href;
+    let http = parser.protocol;
+    let hostname = parser.hostname;
+    window.location.href = http+"//"+hostname+'/dateLog/new';
   }
 
   function setBackground(){
