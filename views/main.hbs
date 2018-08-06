@@ -154,7 +154,12 @@
           console.log("There's something wrong with your Geolocation API");
         }
         else{
-          window.location.href = `http://localhost:3000/dateLog/compare/${long}/${lat}`;
+          let parser = document.createElement('a');
+          parser.href = window.location.href;
+          let http = parser.protocol;
+          let hostname = parser.host;
+          window.location.href = http+"//"+hostname+`/dateLog/compare/${long}/${lat}`;
+          // window.location.href += `/dateLog/compare/${long}/${lat}`;
         }
       });
     }
@@ -168,7 +173,7 @@
 
   // function call to check that there is no input from today before allowing user to create
   function create(){
-    window.location.href = 'http://localhost:3000/dateLog/new';
+    window.location.href += '/dateLog/new';
   }
 
   function setBackground(){
