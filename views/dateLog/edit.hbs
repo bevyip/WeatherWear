@@ -1,0 +1,88 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a href="/main">WeatherWear</a>
+  </div>
+
+  <div class="navbar-text">
+    <a class="navbar-link" href="/dateLog/all">My History | </a>
+    <a class="navbar-link" href="/logout">Sign Out</a>
+  </div>
+</nav>
+
+<form action="/dateLog" method="post" class="form-group">
+
+  <div class="new-input-content">
+
+      <div class="new-input-stuff">
+      <ol style="display: flex; margin: -50px 50px 0 0;">
+
+        <div class="left-input">
+          <h3 id="date"></h3>
+          <h3 id="year"></h3>
+
+          <div class="location-input text-center">
+            <h2 style="font-family: 'Muli'; font-size: 30px;">Location: </h2>
+            <input class="form-control" required minlength="1" maxlength="50" type="text" name="location" id="autocomplete" value="{{dateLog.location}}"/>
+          </div>
+        </div>
+
+        <div class="input-field-box">
+
+        <div class="middle-input">
+          <h3><li>What did I wear today?</li></h3>
+          <label for="input-top-title">*Top:</label>
+          <input type="text" name="top" class="form-control input-top" value="{{dateLog.top}}" required minlength="1" maxlength="50" autocomplete="off">
+
+          <label for="input-bottom-title">*Bottom:</label>
+          <input type="text" name="bottom" class="form-control input-bottom" value="{{dateLog.bottom}}" required minlength="1" maxlength="50" autocomplete="off">
+
+          <label for="input-outerwear-title">*Outerwear:</label>
+          <input type="text" name="outerwear" class="form-control input-outerwear" value="{{dateLog.outerwear}}" required minlength="1" maxlength="50" autocomplete="off">
+
+          <label for="input-others-title">Others:</label>
+          <input type="text" name="others" class="form-control input-others" value="{{dateLog.others}}" autocomplete="off">
+          </div>
+
+          <div class="right-input">
+          <h3><li>How did I feel today?</li></h3>
+          <select id="userFeels" name="userFeels" class="dropdown-input">
+            <option selected disabled>Last selected: {{dateLog.userFeels}}</option>
+            <option value="Cold">Cold</option>
+            <option value="Moderately Cold">Moderately Cold</option>
+            <option value="Perfect">Perfect</option>
+            <option value="Moderately Hot">Moderately hot</option>
+            <option value="Hot">Hot</option>
+          </select>
+
+      <div class="text-center submit-button create-button">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </div>
+      </div>
+    </div>
+    </ol>
+  </div>
+
+</form>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEgWq5G822EXJIgfviFqJRf7vVE6_F5Lc&libraries=places&language=en"></script>
+
+<script>
+var input = document.getElementById('autocomplete');
+new google.maps.places.Autocomplete(input);
+google.maps.event.addListener(autocomplete, 'place_changed', function(){
+  var place = autocomplete.getPlace();
+})
+
+function setDate(){
+  let fullDate = "{{dateLog.date}}";
+  let splitDate = fullDate.split(" ");
+  let date = splitDate[0] + " " + splitDate[1];
+  let year = splitDate[2];
+
+  document.getElementById("date").innerHTML = date;
+  document.getElementById("year").innerHTML = year;
+}
+
+setDate();
+</script>

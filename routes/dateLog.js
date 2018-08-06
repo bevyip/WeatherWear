@@ -293,4 +293,26 @@ router.delete('/:id', auth.requireLogin, (req, res, next) => {
   });
 });
 
+// edit a datelog
+router.get('/:id/edit', auth.requireLogin, (req, res, next) => {
+  const currentUserId = req.session.userId;
+
+  DateLog.findById(req.params.id, function(err, dateLog) {
+    if (err) { console.error(err); }
+    else{
+      res.render('dateLog/edit', { currentUserId: currentUserId, dateLog: dateLog });
+    }
+  });
+});
+
+// update a dateLog
+router.put('/dateLog/:id', (req, res) => {
+  DateLog.findByIdAndUpdate(req.params.id, req.body).then((dateLog) => {
+    console.log("body:" + req.body);
+    res.redirect('/dateLog/show/' + dateLog._id)
+  }).catch((err) => {
+    console.log(err.message)
+  })
+})
+
 module.exports = router;

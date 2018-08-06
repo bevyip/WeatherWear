@@ -23,6 +23,8 @@
           <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
             <button class="btn trash-button" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
           </form></p>
+
+          <p><a href="/dateLog/{{input._id}}/edit">Edit</a></p>
         </div>
       </li>
       {{/each}}
