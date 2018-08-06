@@ -540,6 +540,10 @@ select {
   align-items: center;
 }
 
+.form-group {
+  margin-bottom: 0px;
+}
+
 .filtered-body ol, .inputs-body ol {
   display: flex;
   flex-wrap: wrap;

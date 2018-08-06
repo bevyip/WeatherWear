@@ -176,7 +176,7 @@
     let parser = document.createElement('a');
     parser.href = window.location.href;
     let http = parser.protocol;
-    let hostname = parser.hostname;
+    let hostname = parser.host;
     window.location.href = http+"//"+hostname+'/dateLog/new';
   }
 
