@@ -13,6 +13,10 @@ if it's not present, don't show loader */
 	background: url('/img/Preloader_2.gif') center no-repeat #fff;
 } */
 
+html, body, main {
+  height: 100%;
+}
+
 .section {
   display: flex;
   justify-content: center;
@@ -520,8 +524,20 @@ select {
   border-radius: 20px;
 }
 
-.filtered-body, .inputs-body, .selected-body {
+.filtered-body, .inputs-body {
   background-color: #FFFBEE;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.selected-body {
+  background-color: #FFFBEE;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .filtered-body ol, .inputs-body ol {
