@@ -54,7 +54,7 @@ function create(){
   let parser = document.createElement('a');
   parser.href = window.location.href;
   let http = parser.protocol;
-  let hostname = parser.host;
+  let hostname = parser.hostname;
   window.location.href = http+"//"+hostname+'/dateLog/new';
   // window.location.href = 'http://localhost:3000/dateLog/new';
 }
