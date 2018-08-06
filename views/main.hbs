@@ -1,8 +1,7 @@
+<div id="main-page"></div>
 
-  <div id="main-page"></div>
-
-  {{# if currentUserId}}
-  <nav class="navbar">
+{{# if currentUserId}}
+<nav class="navbar" id="navbar">
     <div class="navbar-brand">
       <a href="/main">WeatherWear</a>
     </div>
@@ -13,7 +12,7 @@
     </div>
   </nav>
 
-  <div class="section landing-content">
+  <div class="section landing-content" id="landing-content">
     <div class="section landing-welcome">
       <h1 id="landing-name">Hello, {{userName}}</h1>
     </div>
@@ -78,6 +77,7 @@
     {{/if}}
     </div>
 
+    <div id="se-pre-con"></div>
 
   <script>
   // frontend call to get current location
@@ -134,6 +134,17 @@
 
   // frontend call to backend function to pass current location so that route can find by temp
   function geoFindMe_compare(){
+    // hbs loading buffering part
+    const content = document.getElementById('landing-content');
+    content.style.display = "none";
+
+    const bufferIcon = document.getElementById('se-pre-con');
+    bufferIcon.style.display = "block";
+
+    const landing = document.getElementById('main-page');
+    landing.style.opacity = "0.1";
+
+    // compare loading part
     if (!navigator.geolocation){
       output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
       return;
@@ -182,8 +193,8 @@
 
   function setBackground(){
     let d = new Date();
-    // let h = (d.getHours()<10?'0':'') + d.getHours();
-    let h = 10;
+    let h = (d.getHours()<10?'0':'') + d.getHours();
+    // let h = 25;
     // let m = (d.getMinutes()<10?'0':'') + d.getMinutes();
 
     const landing = document.getElementById('main-page');

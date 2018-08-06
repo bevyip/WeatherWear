@@ -1,17 +1,13 @@
-/* Paste this css to your style sheet file or under head tag */
-/* This only works with JavaScript,
-if it's not present, don't show loader */
 /* .no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('/img/Preloader_2.gif') center no-repeat #fff;
-} */
+.js #loader { display: block; position: absolute; left: 100px; top: 0; } */
+#se-pre-con {
+  display: none;
+	margin: auto;
+	width: 500px;
+	height: 500px;
+	background: url('/img/Preloader_2.gif') center no-repeat;
+  mix-blend-mode: multiply;
+}
 
 html, body, main {
   height: 100%;
@@ -211,6 +207,11 @@ html, body, main {
 .back-button a:hover, .back-button a:visited {
   text-decoration: none;
   color: #FFFFFF !important;
+}
+
+.form-group {
+  margin-bottom: 0px;
+  height: 100%;
 }
 
 .form-group ::placeholder, select {
@@ -449,7 +450,7 @@ html, body, main {
 
 .new-input-content {
   background-color: #FFFBEE;
-  height: 500px;
+  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -538,10 +539,6 @@ select {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-.form-group {
-  margin-bottom: 0px;
 }
 
 .filtered-body ol, .inputs-body ol {
