@@ -5,15 +5,16 @@
 	height: 500px;
 	background: url('/img/Preloader_2.gif') center no-repeat;
   mix-blend-mode: multiply;
+  /* z-index: 3; */
 }
 
 html, body, main {
   height: 100%;
 }
 
-body {
+/* body {
   background-color: #FFFBEE;
-}
+} */
 
 .section {
   display: flex;
@@ -25,7 +26,7 @@ body {
 .section.landing-page {
   position: absolute;
   overflow: hidden;
-  height: 588px;
+  height: 100%;
   width: 100%;
 }
 
@@ -33,18 +34,14 @@ body {
   content: ' ';
   display: block;
   position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
 
-  padding: inherit;
   background-image: url("../img/landing.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  opacity: 0.9;
 }
 
 .section.landing-page h1 {
@@ -54,18 +51,32 @@ body {
 
   font-family: Josefin Sans;
   font-size: 80px;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   font-weight: bold;
-  color:#FFFFFF;
-  text-shadow: 2px 2px black;
 
   display: flex;
   justify-content: center;
 }
 
+.landing-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-1 {
+  color: black;
+  text-shadow: 2px 2px white;
+}
+
+.title-2 {
+  color: #fff;
+  text-shadow: 2px 2px black;
+}
+
 .landing-welcome h1 {
   font-family: 'Josefin Sans';
-  /* font-family: 'Google Sans',arial,sans-serif; */
   font-size: 80px;
   color: white;
   text-transform: capitalize;
@@ -94,12 +105,12 @@ body {
 }
 
 .buttons.sign-in-button {
+  background-color: #202020;
+  border: 2px solid black;
   color: #fff;
-  background-color: transparent;
-  border: 2px solid #fff;
   transition: color 0.3s ease-out,
                 background-color 0.3s ease-out,
-                border-color 0.3s ease-out;
+                border 0.3s ease-out;
 }
 
 .buttons.sign-up-button {
@@ -107,34 +118,34 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: #F8F8F8;
-  border-color: 2px solid #fff;
-  color: #080808;
+  background-color: #202020;
+  border: 2px solid black;
+  color: #fff;
   transition: color 0.3s ease-out,
               background-color 0.3s ease-out,
-              border-color 0.3s ease-out;
+              border 0.3s ease-out;
 }
 
 .buttons.sign-in-button:hover,
 .buttons.sign-in-button:active {
   text-decoration: none;
-  background-color: #F8F8F8;
-  border-color: 2px solid #fff;
   color: #080808;
+  background-color: #fff;
+  border: 2px solid #fff;
   transition: color 0.3s ease-in,
-              background-color 0.3s ease-in,
-              border-color 0.3s ease-in;
+                background-color 0.3s ease-in,
+                border 0.3s ease-in;
 }
 
 .buttons.sign-up-button:hover,
 .buttons.sign-up-button:active {
   text-decoration: none;
-  color: #fff;
-  background-color: transparent;
+  color: #080808;
+  background-color: #fff;
   border: 2px solid #fff;
   transition: color 0.3s ease-in,
-                background-color 0.3s ease-in
-                /* border-color 0.3s ease-in; */
+                background-color 0.3s ease-in,
+                border 0.3s ease-in;
 }
 
 .section.sign-in-content {
@@ -164,7 +175,7 @@ body {
 
 .section.sign-in-background {
   background-color: #fff;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 2;
 
   padding: 10px 80px 30px;
@@ -174,7 +185,7 @@ body {
 .section.sign-in-content h2 {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
 
   text-align: center;
   z-index: 2;
@@ -184,6 +195,11 @@ body {
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 40px;
+}
+
+p.sign-up-link {
+  font-family: Muli;
+  margin: 10px 0 !important;
 }
 
 .sign-input {
@@ -203,12 +219,13 @@ body {
 
   font-family: 'Playfair Display';
   font-size: 25px;
-  color: #FFFFFF !important;
+  font-weight: bold;
+  color: black !important;
 }
 
 .back-button a:hover, .back-button a:visited {
   text-decoration: none;
-  color: #FFFFFF !important;
+  color: black !important;
 }
 
 .form-group {
@@ -228,9 +245,10 @@ body {
   align-items: center;
 }
 
-.form-group label, .sign-up-link, .submit-button {
+.form-group label, .submit-button {
   font-family: Muli;
-  font-size: 20px;
+  font-size: 18px;
+  margin: 8px 0;
 }
 
 .sign-up-link a {
@@ -319,7 +337,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 10px;
 }
 
 .temp-feels {
@@ -370,40 +388,40 @@ body {
   text-align: center;
   font-family: Lato;
   font-weight: bold;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   outline: none;
   text-decoration: none;
-  margin: 5px;
+  margin-bottom: 0px;
 }
 
 .section.landing-compare {
   cursor: pointer;
   display: inline-block;
-  width: 200px;
-  padding: 8px;
+  width: 180px;
+  padding: 10px;
   margin: 0 20px;
 
-  color: #fff;
-  background-color: transparent;
+  color: #080808;
+  background-color: #fff;
   border: 2px solid #fff;
   transition: color 0.3s ease-out,
                 background-color 0.3s ease-out,
-                border-color 0.3s ease-out;
+                border 0.3s ease-out;
 }
 
 .section.landing-create {
    cursor: pointer;
    margin: 0 15px;
    display: inline-block;
-   width: 200px;
-   padding: 8px;
+   width: 190px;
+   padding: 10px;
    display: flex;
    justify-content: center;
    align-items: center;
 
-   background-color: #F8F8F8;
-   border: 2px solid #fff;
    color: #080808;
+   background-color: #fff;
+   border: 2px solid #fff;
    transition: color 0.3s ease-out,
                background-color 0.3s ease-out,
                border-color 0.3s ease-out;
@@ -411,27 +429,31 @@ body {
 
 .section.landing-compare:hover, .section.landing-compare:active {
   text-decoration: none;
-  background-color: #F8F8F8;
-  border-color: 2px solid #fff;
-  color: #080808;
+  background-color: #202020;
+  border: 2px solid black;
+  color: #fff;
   transition: color 0.3s ease-in,
-              background-color 0.3s ease-in,
-              border-color 0.3s ease-in;
+                background-color 0.3s ease-in,
+                border 0.3s ease-in;
 }
 
 .section.landing-create:hover, .section.landing-create:active {
   text-decoration: none;
+  background-color: #202020;
+  border: 2px solid black;
   color: #fff;
-  background-color: transparent;
   transition: color 0.3s ease-in,
-                background-color 0.3s ease-in
+                background-color 0.3s ease-in,
+                border 0.3s ease-in;
 }
 
 .navbar-brand a, .navbar-brand a:hover {
   font-family: 'Josefin Sans';
   font-size: 25px;
-  color: #F6E481 !important;
+  /* color: #aac5f5 !important; */
+  color: white !important;
   text-decoration: none;
+  margin: 0px;
 }
 
 .navbar-text a, .navbar-text a:hover {
@@ -451,7 +473,7 @@ body {
 }
 
 .new-input-content {
-  background-color: #FFFBEE;
+  /* background-color: #fffdee; */
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -470,7 +492,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 50px;
+  padding: 0 45px;
+}
+
+.left-input {
+  width: 450px;
 }
 
 .middle-input {
@@ -521,14 +547,14 @@ select {
   flex-direction: row;
 
   background-color: #fff;
-  background-color: rgba(255,231,155, 0.8);
+  background-color: #bed5ff;
   z-index: 2;
   padding: 30px 20px;
   border-radius: 20px;
 }
 
 .filtered-body, .inputs-body {
-  background-color: #FFFBEE;
+  /* background-color: #FFFBEE; */
   display: flex;
   height: 100%;
   justify-content: center;
@@ -536,7 +562,7 @@ select {
 }
 
 .selected-body {
-  background-color: #FFFBEE;
+  /* background-color: #FFFBEE; */
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -563,8 +589,9 @@ select {
   margin: 20px;
   padding: 20px;
 
+  cursor: context-menu;
   display: flex;
-  background-color: #B44746;
+  background-color: #bed5ff;
   border-radius: 25px;
   align-items: center;
   justify-content: center;
@@ -572,11 +599,11 @@ select {
 
 .log-stuff a, .log-stuff a:visited,
 .inputstuff a, .inputstuff a:visited {
-  margin-bottom: 30px;
-  color: #F6E481 !important;
+  color: black !important;
   font-family: Lato;
   letter-spacing: 1px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .log-stuff p {
@@ -587,14 +614,15 @@ select {
 
 .log-stuff a:hover, .inputstuff a:hover {
   text-decoration: none;
-  color: #FFFFFF !important;
+  color: #910020 !important;
 }
 
 .log-stuff h2 {
   font-family: Lato;
   font-size: 55px;
   margin: 15px 0 5px;
-  color: #FFFFFF;
+  color: black;
+  font-weight: bold;
 }
 
 .log-userfeels {
@@ -617,11 +645,12 @@ select {
   font-size: 28px;
   font-weight: bold;
   letter-spacing: 1px;
-  color: white;
+  color: black;
 }
 
 .input-location {
   font-family: Lato;
+  color: #fff;
 }
 
 .trash-button {
@@ -630,17 +659,17 @@ select {
 }
 
 #trash {
-  color: black !important;
+  color: #910020 !important;
   background-color: inherit !important;
   border: none;
-  margin: auto;
+  margin: 10px auto;
   font-size: 20px;
-  padding: 0;
+  padding: 0 0 15px 0;
   cursor: pointer;
 }
 
 #trash:hover {
-  color: #F6E481 !important;
+  color: black !important;
 }
 
 #trash:focus #trash:active {
@@ -655,7 +684,7 @@ select {
 .selected-body h4 {
   font-size: 50px;
   font-weight: bolder;
-  color: #B44746;
+  color: black;
 }
 
 .selected-inputs {
@@ -669,7 +698,7 @@ select {
   font-family: Lato;
   font-weight: bold;
   font-size: 50px;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   margin: 5px 0;
 }
 
@@ -679,10 +708,10 @@ select {
   justify-content: center;
   align-items: center;
   margin: 10px 0;
-  background-color: #fff;
-  background-color: rgba(255,231,155, 0.8);
+  /* background-color: #fff; */
+  background-color: #bed5ff;
   z-index: 2;
-  padding: 20px 120px;
+  padding: 20px 110px 20px 120px;
   border-radius: 20px;
 
   font-family: Lato;
@@ -699,8 +728,9 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-right: 8px;
+  align-items: flex-end;
+  margin-right: 12px;
+  margin-top: 10px;
 }
 
 .clothes-content {
@@ -708,7 +738,8 @@ select {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 8px;
+  /* margin-left: 8px; */
+  margin-top: 10px;
 }
 
 .clothes-label p {
@@ -718,11 +749,12 @@ select {
 
 .clothes-content p {
   margin: 5px 0;
+  padding-left: 5px;
 }
 
 .selected-feels-only {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   margin-top: 15px;
@@ -734,10 +766,11 @@ select {
 }
 
 .major-feels {
-  color: #B44746;
+  color: #910020;
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .no-user-input, .row {

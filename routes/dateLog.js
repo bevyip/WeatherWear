@@ -35,6 +35,17 @@ function setToday(){
   return ans;
 }
 
+// update a dateLog
+router.put('/:id', (req, res, next) => {
+
+  DateLog.findByIdAndUpdate(req.params.id, { $set: req.body}).then((dateLog) => {
+    res.redirect(`/dateLog/show/${dateLog._id}`);
+  }).catch((err) => {
+    console.log(err.message)
+  })
+
+});
+
 // Main page which shows current location details at the start,
 // After submitting input, shows new location details at main page.
 router.post('/', auth.requireLogin, (req, res, next) => {
@@ -304,15 +315,5 @@ router.get('/:id/edit', auth.requireLogin, (req, res, next) => {
     }
   });
 });
-
-// update a dateLog
-router.put('/dateLog/:id', (req, res) => {
-  DateLog.findByIdAndUpdate(req.params.id, req.body).then((dateLog) => {
-    console.log("body:" + req.body);
-    res.redirect('/dateLog/show/' + dateLog._id)
-  }).catch((err) => {
-    console.log(err.message)
-  })
-})
 
 module.exports = router;

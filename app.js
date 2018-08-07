@@ -16,7 +16,7 @@ var app = express();
 const session = require('express-session');
 app.use(session({ secret: 'secret-unique-code', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true }));
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

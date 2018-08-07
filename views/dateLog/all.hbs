@@ -20,11 +20,12 @@
           <p class="inputstuff input-userfeels">{{input.userFeels}}</p>
           <a class="inputstuff input-link" href="/dateLog/show/{{input._id}}">Read More</a>
 
-          <p><form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
-            <button class="btn trash-button" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
-          </form></p>
+            <p style="margin-bottom: 0px;margin-top: 5px;"><a href="/dateLog/{{input._id}}/edit">Edit</a></p>
 
-          <p><a href="/dateLog/{{input._id}}/edit">Edit</a></p>
+            <form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
+            <button class="btn trash-button" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
+          </form>
+
         </div>
       </li>
       {{/each}}
@@ -75,8 +76,11 @@ function lengthCheck(obj){
   const $numWords = obj.textContent.length;
   // const $numWords = 14;
 
-  if (($numWords >= 1) && ($numWords < 70)) {
-    obj.style.fontSize = "17px"
+  if (($numWords >= 1) && ($numWords < 20)) {
+    obj.style.fontSize = "28px"
+  }
+  else if (($numWords >= 20) && ($numWords < 70)) {
+    obj.style.fontSize = "16px"
   }
   else {
     obj.style.fontSize = "15px"
