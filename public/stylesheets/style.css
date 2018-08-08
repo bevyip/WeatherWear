@@ -12,9 +12,9 @@ html, body, main {
   height: 100%;
 }
 
-/* body {
-  background-color: #FFFBEE;
-} */
+body {
+  background-color: #fffff7;
+}
 
 .section {
   display: flex;
@@ -105,8 +105,8 @@ html, body, main {
 }
 
 .buttons.sign-in-button {
-  background-color: #202020;
-  border: 2px solid black;
+  background-color: #C4AF93;
+  border: 2px solid #C4AF93;
   color: #fff;
   transition: color 0.3s ease-out,
                 background-color 0.3s ease-out,
@@ -129,9 +129,9 @@ html, body, main {
 .buttons.sign-in-button:hover,
 .buttons.sign-in-button:active {
   text-decoration: none;
-  color: #080808;
-  background-color: #fff;
-  border: 2px solid #fff;
+  color: #fff;
+  background-color: #202020;
+  border: 2px solid #202020;
   transition: color 0.3s ease-in,
                 background-color 0.3s ease-in,
                 border 0.3s ease-in;
@@ -252,24 +252,24 @@ p.sign-up-link {
 }
 
 .sign-up-link a {
-  color: black;
+  color: #75572e;
   font-weight: bold;
   text-decoration: none;
 }
 
 .sign-up-link a:hover {
-  color: white;
+  color: black;
 }
 
 .submit-button button {
-  background-color: #B44746;
-  border-color: #B44746;
+  background-color: #B0946D;
+  border-color: #B0946D;
   font-size: 18px;
 }
 
 .submit-button button:hover {
-  background-color: #680808;
-  border-color: #680808;
+  background-color: #C4AF93;
+  border-color: #C4AF93;
 }
 
 #main-page {
@@ -429,8 +429,8 @@ p.sign-up-link {
 
 .section.landing-compare:hover, .section.landing-compare:active {
   text-decoration: none;
-  background-color: #202020;
-  border: 2px solid black;
+  background-color: #C4AF93;
+  border: 2px solid #C4AF93;
   color: #fff;
   transition: color 0.3s ease-in,
                 background-color 0.3s ease-in,
@@ -439,8 +439,8 @@ p.sign-up-link {
 
 .section.landing-create:hover, .section.landing-create:active {
   text-decoration: none;
-  background-color: #202020;
-  border: 2px solid black;
+  background-color: #C4AF93;
+  border: 2px solid #C4AF93;
   color: #fff;
   transition: color 0.3s ease-in,
                 background-color 0.3s ease-in,
@@ -451,13 +451,13 @@ p.sign-up-link {
   font-family: 'Josefin Sans';
   font-size: 25px;
   /* color: #aac5f5 !important; */
-  color: white !important;
+  color: #e3c499 !important;
   text-decoration: none;
   margin: 0px;
 }
 
 .navbar-text a, .navbar-text a:hover {
-  color: white !important;
+  color: #fff !important;
   text-decoration: none;
 }
 
@@ -546,15 +546,15 @@ select {
   display: flex;
   flex-direction: row;
 
-  background-color: #fff;
-  background-color: #bed5ff;
+  /* background-color: #fff; */
+  background-color: #f3f3f3;
   z-index: 2;
   padding: 30px 20px;
   border-radius: 20px;
 }
 
 .filtered-body, .inputs-body {
-  /* background-color: #FFFBEE; */
+  background-color: #fffff7;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -562,7 +562,7 @@ select {
 }
 
 .selected-body {
-  /* background-color: #FFFBEE; */
+  background-color: #fffff7;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -591,7 +591,7 @@ select {
 
   cursor: context-menu;
   display: flex;
-  background-color: #bed5ff;
+  background-color: #f3f3f3;
   border-radius: 25px;
   align-items: center;
   justify-content: center;
@@ -606,15 +606,23 @@ select {
   margin-bottom: 5px;
 }
 
-.log-stuff p {
-  color: #FFFFFF;
+.log-loc {
+  color: #604b2c;
   font-family: Lato;
-  overflow: hidden;
+}
+
+.log-userfeels {
+  font-family: Lato;
+  background-color: #B0946D;
+  width: 100%;
+  padding: 2px 0;
+  margin-top: -5px 0;
+  color: white;
 }
 
 .log-stuff a:hover, .inputstuff a:hover {
   text-decoration: none;
-  color: #910020 !important;
+  color: #B0946D  !important
 }
 
 .log-stuff h2 {
@@ -625,14 +633,8 @@ select {
   font-weight: bold;
 }
 
-.log-userfeels {
-  background-color: black;
-  padding: 2px 2em;
-  margin-top: -5px 0;
-}
-
 .input-userfeels {
-  background-color: black;
+  background-color: #B0946D;
   padding: 2px 0;
   margin-top: -5px 0;
   color: white;
@@ -650,7 +652,7 @@ select {
 
 .input-location {
   font-family: Lato;
-  color: #fff;
+  color: #604b2c;
 }
 
 .trash-button {
@@ -659,7 +661,7 @@ select {
 }
 
 #trash {
-  color: #910020 !important;
+  color: #604b2c !important;
   background-color: inherit !important;
   border: none;
   margin: 10px auto;
@@ -669,7 +671,7 @@ select {
 }
 
 #trash:hover {
-  color: black !important;
+  color: #B0946D !important;
 }
 
 #trash:focus #trash:active {
@@ -699,7 +701,7 @@ select {
   font-weight: bold;
   font-size: 50px;
   letter-spacing: 3px;
-  margin: 5px 0;
+  margin: 5px 0 8px 0;
 }
 
 .selected-outfits {
@@ -709,7 +711,7 @@ select {
   align-items: center;
   margin: 10px 0;
   /* background-color: #fff; */
-  background-color: #bed5ff;
+  background-color: #f3f3f3;
   z-index: 2;
   padding: 20px 110px 20px 120px;
   border-radius: 20px;
@@ -738,17 +740,16 @@ select {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* margin-left: 8px; */
   margin-top: 10px;
 }
 
 .clothes-label p {
   font-weight: bold;
-  margin: 5px 0;
+  margin: 1px;
 }
 
 .clothes-content p {
-  margin: 5px 0;
+  margin: 1px;
   padding-left: 5px;
 }
 
@@ -766,11 +767,12 @@ select {
 }
 
 .major-feels {
-  color: #910020;
+  color: #B0946D;
   font-weight: bold;
   font-size: 25px;
-  margin-bottom: 10px;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: -5px 0 10px 0;
 }
 
 .no-user-input, .row {
