@@ -49,8 +49,32 @@ document.addEventListener("DOMContentLoaded", function(event){
 				addElem("time", "day-number", dayView);
 				var dayNumber = document.querySelector('.day-number');
 				var dayNumNode = document.createTextNode(currentDate.theDay);
-				dayNumber.appendChild(dayNumNode);
-				dayView.appendChild(dayNumber);
+				// dayNumber.appendChild(dayNumNode);
+				// dayView.appendChild(dayNumber);
+
+				const userInput = `
+				<ol>
+		      {{#each dateLogs as |input|}}
+		      <li>
+					<div class="inputstuff text-center">
+						<p class="inputstuff input-date">{{input.date}}</p>
+						<p class="inputstuff input-location">{{input.location}}</p>
+						<p class="inputstuff input-userfeels">{{input.userFeels}}</p>
+						<a class="inputstuff input-link" href="/dateLog/show/{{input._id}}">Read More</a>
+
+							<p style="margin-bottom: 0px;margin-top: 5px;"><a href="/dateLog/{{input._id}}/edit">Edit</a></p>
+
+							<form method="POST" action="/dateLog/{{input._id}}?_method=DELETE">
+							<button class="btn trash-button" id="trash" Onclick="return confirm('Are you sure you want to delete this input?');"><i class="fa fa-trash"></i> </button>
+						</form>
+
+					</div>
+					</li>
+		      {{/each}}
+					</ol>
+				`
+
+				$('#dayView').html(userInput);
 
 				addElem("div", "month-view", renderTarget);
 				var monthView = document.querySelector('.month-view');
