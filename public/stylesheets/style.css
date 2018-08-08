@@ -108,9 +108,9 @@ body {
   background-color: #C4AF93;
   border: 2px solid #C4AF93;
   color: #fff;
-  transition: color 0.3s ease-out,
-                background-color 0.3s ease-out,
-                border 0.3s ease-out;
+  transition: color 0.2s ease-out,
+                background-color 0.2s ease-out,
+                border 0.2s ease-out;
 }
 
 .buttons.sign-up-button {
@@ -121,9 +121,9 @@ body {
   background-color: #202020;
   border: 2px solid black;
   color: #fff;
-  transition: color 0.3s ease-out,
-              background-color 0.3s ease-out,
-              border 0.3s ease-out;
+  transition: color 0.2s ease-out,
+              background-color 0.2s ease-out,
+              border 0.2s ease-out;
 }
 
 .buttons.sign-in-button:hover,
@@ -132,9 +132,9 @@ body {
   color: #fff;
   background-color: #202020;
   border: 2px solid #202020;
-  transition: color 0.3s ease-in,
-                background-color 0.3s ease-in,
-                border 0.3s ease-in;
+  transition: color 0.2s ease-in,
+                background-color 0.2s ease-in,
+                border 0.2s ease-in;
 }
 
 .buttons.sign-up-button:hover,
@@ -143,9 +143,9 @@ body {
   color: #fff;
   background-color: #C4AF93;
   border: 2px solid #C4AF93;
-  transition: color 0.3s ease-in,
-                background-color 0.3s ease-in,
-                border 0.3s ease-in;
+  transition: color 0.2s ease-in,
+                background-color 0.2s ease-in,
+                border 0.2s ease-in;
 }
 
 .section.sign-in-content {
@@ -404,9 +404,9 @@ p.sign-up-link {
   color: #080808;
   background-color: #fff;
   border: 2px solid #fff;
-  transition: color 0.3s ease-out,
-                background-color 0.3s ease-out,
-                border 0.3s ease-out;
+  transition: color 0.2s ease-out,
+                background-color 0.2s ease-out,
+                border 0.2s ease-out;
 }
 
 .section.landing-create {
@@ -422,9 +422,9 @@ p.sign-up-link {
    color: #080808;
    background-color: #fff;
    border: 2px solid #fff;
-   transition: color 0.3s ease-out,
-               background-color 0.3s ease-out,
-               border-color 0.3s ease-out;
+   transition: color 0.2s ease-out,
+               background-color 0.2s ease-out,
+               border-color 0.2s ease-out;
  }
 
 .section.landing-compare:hover, .section.landing-compare:active {
@@ -432,9 +432,9 @@ p.sign-up-link {
   background-color: #C4AF93;
   border: 2px solid #C4AF93;
   color: #fff;
-  transition: color 0.3s ease-in,
-                background-color 0.3s ease-in,
-                border 0.3s ease-in;
+  transition: color 0.2s ease-in,
+                background-color 0.2s ease-in,
+                border 0.2s ease-in;
 }
 
 .section.landing-create:hover, .section.landing-create:active {
@@ -442,9 +442,9 @@ p.sign-up-link {
   background-color: #C4AF93;
   border: 2px solid #C4AF93;
   color: #fff;
-  transition: color 0.3s ease-in,
-                background-color 0.3s ease-in,
-                border 0.3s ease-in;
+  transition: color 0.2s ease-in,
+                background-color 0.2s ease-in,
+                border 0.2s ease-in;
 }
 
 .navbar-brand a, .navbar-brand a:hover {
@@ -681,6 +681,7 @@ select {
 
 .selected-body {
   font-family: Lato;
+  cursor: default;
 }
 
 .selected-body h4 {
@@ -693,7 +694,7 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0;
+  margin: 10px 0 0 0;
 }
 
 .selected-inputs h2 {
@@ -773,6 +774,31 @@ select {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin: -5px 0 10px 0;
+}
+
+.show-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+
+  background-color: #202020;
+  border: 2px solid black;
+  color: #fff;
+  transition: color 0.2s ease-out,
+              background-color 0.2s ease-out,
+              border 0.2s ease-out;
+}
+
+.buttons.show-edit:hover,
+.buttons.show-edit:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: #C4AF93;
+  border: 2px solid #C4AF93;
+  transition: color 0.2s ease-in,
+                background-color 0.2s ease-in,
+                border 0.2s ease-in;
 }
 
 .no-user-input, .row {
