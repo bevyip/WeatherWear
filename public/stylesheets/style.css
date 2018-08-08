@@ -140,9 +140,9 @@ body {
 .buttons.sign-up-button:hover,
 .buttons.sign-up-button:active {
   text-decoration: none;
-  color: #080808;
-  background-color: #fff;
-  border: 2px solid #fff;
+  color: #fff;
+  background-color: #C4AF93;
+  border: 2px solid #C4AF93;
   transition: color 0.3s ease-in,
                 background-color 0.3s ease-in,
                 border 0.3s ease-in;
