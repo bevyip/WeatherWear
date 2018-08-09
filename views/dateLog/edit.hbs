@@ -13,22 +13,21 @@
 
   <div class="new-input-content">
 
-      <div class="new-input-stuff">
-      <ol style="display: flex; margin: -50px 50px 0 0;">
+    <div class="left-input edit-left">
+      <h3 id="date"></h3>
+      <h3 id="year" style="color:  #B0946D;"></h3>
 
-        <div class="left-input">
-          <h3 id="date"></h3>
-          <h3 id="year" style="color:  #B0946D;"></h3>
+      <div class="location-input text-center">
+        <h2 class="edit-loc">Location: {{dateLog.location}}</h2>
+        <!-- <input class="form-control" disabled value="{{dateLog.location}}"/> -->
+      </div>
+    </div>
 
-          <div class="location-input text-center">
-            <h2 style="font-family: 'Muli'; font-size: 30px;">Location: {{dateLog.location}}</h2>
-            <!-- <input class="form-control" disabled value="{{dateLog.location}}"/> -->
-          </div>
-        </div>
+    <ol style="padding: 0">
 
-        <div class="input-field-box">
+      <div class="input-field-box edit-box">
 
-        <div class="middle-input">
+        <div class="middle-input edit-middle">
           <h3><li>What did I wear today?</li></h3>
           <label for="input-top-title">*Top:</label>
           <input type="text" name="top" class="form-control input-top" value="{{dateLog.top}}" required minlength="1" maxlength="50" autocomplete="off">
@@ -41,9 +40,9 @@
 
           <label for="input-others-title">Others:</label>
           <input type="text" name="others" class="form-control input-others" value="{{dateLog.others}}" autocomplete="off">
-          </div>
+        </div>
 
-          <div class="right-input">
+        <div class="right-input edit-right">
           <h3><li>How did I feel today?</li></h3>
           <select required id="userFeels" name="userFeels" class="dropdown-input">
             <option selected disabled>Last selected: {{dateLog.userFeels}}</option>
@@ -54,12 +53,11 @@
             <option value="Hot">Hot</option>
           </select>
 
-      <div class="text-center submit-button create-button">
-        <button type="submit" class="btn btn-primary">Update</button>
+          <div class="text-center submit-button create-button">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
-    </div>
     </ol>
   </div>
 

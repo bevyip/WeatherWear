@@ -13,20 +13,19 @@
 
   <div class="new-input-content">
 
-    <div class="new-input-stuff">
-      <ol style="display: flex; margin: -50px 50px 0 0;">
+    <div class="left-input">
+      <h3 id="date"></h3>
+      <h3 id="year" style="color:  #B0946D;"></h3>
 
-        <div class="left-input">
-          <h3 id="date"></h3>
-          <h3 id="year" style="color:  #B0946D;"></h3>
+      <div class="location-input text-center">
+        <h2 style="font-family: 'Muli'; font-size: 30px;">Location: </h2>
+        <input class="form-control" required minlength="1" maxlength="50" type="text" name="location" id="autocomplete"/>
+      </div>
+    </div>
 
-          <div class="location-input text-center">
-            <h2 style="font-family: 'Muli'; font-size: 30px;">Location: </h2>
-            <input class="form-control" required minlength="1" maxlength="50" type="text" name="location" id="autocomplete"/>
-          </div>
-        </div>
+    <ol style="padding: 0">
 
-        <div class="input-field-box">
+      <div class="input-field-box">
 
         <div class="middle-input">
           <h3><li>What did I wear today?</li></h3>
@@ -41,9 +40,9 @@
 
           <label for="input-others-title">Others:</label>
           <input type="text" name="others" class="form-control input-others" placeholder="e.g: Red beanie" autocomplete="off">
-          </div>
+        </div>
 
-          <div class="right-input">
+        <div class="right-input">
           <h3><li>How did I feel today?</li></h3>
           <select id="userFeels" name="userFeels" class="dropdown-input">
             <option value="Cold">Cold</option>
@@ -53,13 +52,15 @@
             <option value="Hot">Hot</option>
           </select>
 
-      <div class="text-center submit-button create-button">
-        <button type="submit" class="btn btn-primary">Create</button>
+          <div class="text-center submit-button create-button">
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+
       </div>
-      </div>
-      </div>
-    </div>
+
     </ol>
+
   </div>
 
 </form>

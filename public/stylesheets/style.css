@@ -83,6 +83,15 @@ body {
   letter-spacing: -3px;
 }
 
+@media only screen and (max-width: 599px) {
+  .landing-welcome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+}
+
 .landing-buttons {
   display: flex;
   flex-direction: row;
@@ -473,40 +482,56 @@ p.sign-up-link {
 }
 
 .new-input-content {
-  /* background-color: #fffdee; */
-  height: 100%;
   display: flex;
-  justify-content: space-around;
+  height: 100%;
+  justify-content: center;
   align-items: center;
-  position: relative;
 }
 
-.new-input-stuff {
+.input-field-box {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  /* flex-direction: row; */
+
+  background-color: #f3f3f3;
+  padding: 30px 20px;
+  border-radius: 20px;
 }
 
 .left-input, .right-input, .middle-input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 45px;
+  padding: 0 40px;
 }
 
 .left-input {
-  width: 450px;
+  margin-right: 10px;
+  text-align: center;
 }
 
-.middle-input {
-  margin: 0 -25px 0 10px;
+.edit-left {
+  margin-left: -120px;
+  margin-right: 20px;
+}
+
+.edit-box {
+  margin-right: 60px;
+  margin-left: -200px;
+}
+
+.edit-middle , .edit-right {
+  padding: 0 30px;
 }
 
 .middle-input li, .right-input li {
   font-family: 'Muli';
   font-size: 20px;
   font-weight: bold;
+  margin-top: 5px;
+}
+
+.middle-input li {
+  margin-left: 35px;
 }
 
 .right-input label, .middle-input label {
@@ -515,6 +540,104 @@ p.sign-up-link {
 
 .middle-input input {
   margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1050px) and (min-width: 600px) {
+    .new-input-content {
+      flex-direction: column;
+      margin-top: 250px;
+      margin-bottom: 50px;
+      padding: 100px;
+    }
+
+    .input-field-box {
+      flex-direction: column;
+      padding: 20px 50px;
+    }
+
+    .left-input {
+      margin-left: 0;
+      margin-bottom: 150px;
+    }
+
+    .middle-input {
+      padding: 0;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+  .new-input-content {
+    flex-direction: column;
+    margin-top: 250px;
+    margin-bottom: 150px;
+    padding: 100px;
+  }
+
+  .input-field-box {
+    flex-direction: column;
+    padding: 20px 10px;
+  }
+
+  .left-input {
+    margin-left: 0;
+    margin-top: 140px;
+    margin-bottom: 190px;
+    padding: 0 -50px;
+  }
+
+}
+
+@media only screen and (max-width: 1050px) and (min-width: 600px) {
+    .new-input-content {
+      flex-direction: column;
+      margin-top: 250px;
+      margin-bottom: 50px;
+      padding: 100px;
+    }
+
+    .edit-box {
+      margin: 0;
+    }
+
+    .edit-left {
+      margin-left: 0;
+      margin-bottom: 150px;
+    }
+
+    .edit-loc {
+      width: 400px;
+    }
+
+    .middle-input {
+      padding: 0;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+  .new-input-content {
+    flex-direction: column;
+    margin-top: 250px;
+    margin-bottom: 150px;
+    padding: 100px;
+  }
+
+  .edit-box {
+    flex-direction: column;
+    padding: 20px 10px;
+    margin: 0;
+  }
+
+  .edit-left {
+    margin-left: 0;
+    margin-top: 140px;
+    margin-bottom: 190px;
+    padding: 0 -50px;
+  }
+
+  .edit-loc {
+    width: 200px;
+  }
+
 }
 
 .create-button {
@@ -540,17 +663,6 @@ select {
 
 .dropdown-input {
   margin-top: 10px;
-}
-
-.input-field-box {
-  display: flex;
-  flex-direction: row;
-
-  /* background-color: #fff; */
-  background-color: #f3f3f3;
-  z-index: 2;
-  padding: 30px 20px;
-  border-radius: 20px;
 }
 
 .filtered-body, .inputs-body {
@@ -799,6 +911,16 @@ select {
   transition: color 0.2s ease-in,
                 background-color 0.2s ease-in,
                 border 0.2s ease-in;
+}
+
+.edit-loc {
+  text-align: center;
+  font-family: 'Muli';
+  font-size: 20px;
+}
+
+.location-input {
+  padding: 0 150px;
 }
 
 .no-user-input, .row {
