@@ -60,7 +60,6 @@ body {
 
 .landing-title {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -81,15 +80,6 @@ body {
   color: white;
   text-transform: capitalize;
   letter-spacing: -3px;
-}
-
-@media only screen and (max-width: 599px) {
-  .landing-welcome {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
 }
 
 .landing-buttons {
@@ -155,6 +145,35 @@ body {
   transition: color 0.2s ease-in,
                 background-color 0.2s ease-in,
                 border 0.2s ease-in;
+}
+
+@media only screen and (max-width: 599px) {
+  .landing-welcome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .landing-title {
+    flex-direction: column;
+  }
+
+  .landing-title h1 {
+    margin: -10px 0;
+  }
+
+  .landing-buttons {
+    margin-top: 30px;
+  }
+
+  .buttons {
+  width: 140px;
+  }
+
+  .section.sign-in-background {
+    margin-top: 20px;
+  }
+
 }
 
 .section.sign-in-content {
@@ -285,7 +304,7 @@ p.sign-up-link {
   position: absolute;
   overflow: hidden;
   top: 55px;
-  height: 532px;
+  height: 100%;
   width: 100%;
   z-index: -1;
 }
@@ -454,6 +473,17 @@ p.sign-up-link {
   transition: color 0.2s ease-in,
                 background-color 0.2s ease-in,
                 border 0.2s ease-in;
+}
+
+@media only screen and (max-width: 599px) {
+  .section.landing-compare, .section.landing-create {
+    width: 150px;
+
+  }
+
+  .section.main-buttons {
+    margin: auto;
+  }
 }
 
 .navbar-brand a, .navbar-brand a:hover {
