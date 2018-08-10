@@ -527,14 +527,17 @@ p.sign-up-link {
   border-radius: 20px;
 }
 
-.left-input, .right-input, .middle-input {
+.right-input, .middle-input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 40px;
+  margin: 0 30px;
 }
 
 .left-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-right: 10px;
   text-align: center;
 }
@@ -545,12 +548,14 @@ p.sign-up-link {
 }
 
 .edit-box {
-  margin-right: 60px;
+  margin-right: 100px;
   margin-left: -200px;
+  margin-bottom: 30px;
+  width: 600px;
 }
 
 .edit-middle , .edit-right {
-  padding: 0 30px;
+  margin: 0 30px;
 }
 
 .middle-input li, .right-input li {
@@ -636,6 +641,7 @@ p.sign-up-link {
 
     .edit-loc {
       width: 400px;
+      padding: 0 !important;
     }
 
     .middle-input {
@@ -947,10 +953,11 @@ select {
   text-align: center;
   font-family: 'Muli';
   font-size: 20px;
+  padding: 0 250px;
 }
 
 .location-input {
-  padding: 0 150px;
+  padding: 0 100px;
 }
 
 .no-user-input, .row {
